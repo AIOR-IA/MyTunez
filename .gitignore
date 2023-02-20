@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# IDEA
+src/.idea/
+src/app/.idea/
+
 # compiled output
 /dist
 /tmp
