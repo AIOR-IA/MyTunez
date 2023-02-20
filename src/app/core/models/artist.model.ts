@@ -1,5 +1,10 @@
+import {GenreModel} from "./genre.model";
+
 export interface ArtistModel {
-    name: string;
-    nickname: string;
-    nationality: string
+  artistUUID: string;
+  name: string;
+  genres: Array<GenreModel>;
+  members: string;
+  website: string
+  image: string; // urlPublic
 }

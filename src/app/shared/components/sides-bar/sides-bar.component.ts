@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArtistModel } from '@core/models/artist.model';
+import { BusinessLogicService } from '@shared/services/business-logic.service';
 
 @Component({
   selector: 'app-sides-bar',
@@ -24,7 +26,11 @@ export class SidesBarComponent implements OnInit {
       icon:'fa-magnifying-glass'
     }
   ]
-  constructor() { }
+   Artist : ArtistModel[]=[];
+  constructor(private logic : BusinessLogicService) { 
+      this.Artist= logic.artistCollection;
+      console.log(this.Artist[0].image);
+  }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -63,7 +69,7 @@ export class SidesBarComponent implements OnInit {
         router: ['/']
       },
       {
-        name: 'AC/DC',
+        name: this.Artist[0].name,
         router: ['/']
       },
       {
