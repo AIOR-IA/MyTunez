@@ -1,1 +1,87 @@
-<p>side-bar works!</p>
+<div class="container-fluid mb-2 header-uploadimages">
+
+    <div class="container-fluid header-uploadimages-data text-center">
+
+        <h5 class="display-5">- SUBIR IMÁGENES A -</h5>
+        div
+    </div>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card text-center ">
+                <div class="card-header ">
+                    <h6>IMAGES</h6>
+                </div>
+                <div class="input-group">
+                    <div class="col">
+                        <label>Seleccione los documentos:</label>
+                        <input class="form-control" (change)="upload($event)" type="file" accept=".png , .jpg , .mp3">
+                        <small *ngIf="fileError" class="text-danger"> Debe seleccionar una imágen PNG o JPG</small>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <button class="btn btn-primary" (click)="CargarArchivosWeb()">UPLOAD IMAGE</button>
+            </div>
+        </div>
+        <!-- <div class="col-md-7 ">
+            <div class="card text-center shadow-lg  bg-white rounded">
+                <div class="card-header">
+                    <h6>ARCHIVOS CARGADOS</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-striped table  animated fadeIn faster animated fadeIn">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>NOMBRE ARCHIVO</th>
+                                    <th>TAMAÑO</th>
+                                    <th>PROGRESO</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of files ">
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.file.size / 1024 / 1024 | number:".2-2"}} MB</td>
+                                    <td *ngIf="item.uploadPercent | async as uploadPercent">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" [ngStyle]="{width:uploadPercent + '%'}">
+
+                                                {{uploadPercent | number:"1.0-0"}}%
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col text-left">
+                            <button class="btn btn-danger" (click)="files=[]"> 
+                            <i class="fa fa-trash"></i> 
+                            QUITAR
+                        </button>
+            </div>
+
+
+            <div class="col text-right">
+                <button class="btn btn-primary" [disabled]="!estadoBoton" (click)="CargarArchivosWeb()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                            CARGAR ARCHIVOS
+                        </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div> -->
+    </div>
+    <br>
+    <br>
+</div>
