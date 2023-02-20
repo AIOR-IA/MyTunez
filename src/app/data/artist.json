@@ -1,56 +1,67 @@
-[{
-        "artistUUID": "ab3af6b1-9797-493f-84f5-e41f34c5a69e",
-        "name": "Luis Miguel",
-        "genres": [{
-            "genreUUID": "3372f869-67c6-4a40-af50-2d5214910408",
-            "name": "ROCK"
-        }],
-        "members": "Alf, Hugo",
-        "website": "http://luis.miguel.com.mex",
-        "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
-    },
-    {
-        "artistUUID": "0315ae34-658a-458d-a740-c99354e863bd",
-        "name": "Luis Miguel",
-        "genres": [{
-            "genreUUID": "4787cb14-a955-4039-b3f8-b07ee2aaafb3",
-            "name": "ROCK"
-        }],
-        "members": "Alf, Hugo",
-        "website": "http://luis.miguel.com.mex",
-        "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
-    },
-    {
-        "artistUUID": "72d4ba20-413c-43a8-b1e1-0fcdfb7dff23",
-        "name": "Luis Miguel",
-        "genres": [{
-            "genreUUID": "d4adf88d-0f85-4021-9a09-295c8f2b8694",
-            "name": "ROCK"
-        }],
-        "members": "Alf, Hugo",
-        "website": "http://luis.miguel.com.mex",
-        "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
-    },
-    {
-        "artistUUID": "05e40a72-d708-4ade-bc12-a2f03e21a804",
-        "name": "Luis Miguel",
-        "genres": [{
-            "genreUUID": "a70de85c-88e2-4018-8a40-97f36daff3de",
-            "name": "ROCK"
-        }],
-        "members": "Alf, Hugo",
-        "website": "http://luis.miguel.com.mex",
-        "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
-    },
-    {
-        "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218",
-        "name": "Luis Miguel",
-        "genres": [{
-            "genreUUID": "208f8546-d850-439e-ae2c-25eaf6c5856c",
-            "name": "ROCK"
-        }],
-        "members": "Alf, Hugo",
-        "website": "http://luis.miguel.com.mex",
-        "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
-    }
+[
+  {
+    "artistUUID": "ab3af6b1-9797-493f-84f5-e41f34c5a69e",
+    "name": "Luis Miguel",
+    "genres": [
+      {
+        "genreUUID": "3372f869-67c6-4a40-af50-2d5214910408",
+        "name": "ROCK"
+      }
+    ],
+    "members": "Alf, Hugo",
+    "website": "http://luis.miguel.com.mex",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
+  },
+  {
+    "artistUUID": "0315ae34-658a-458d-a740-c99354e863bd",
+    "name": "Luis Miguel",
+    "genres": [
+      {
+        "genreUUID": "4787cb14-a955-4039-b3f8-b07ee2aaafb3",
+        "name": "ROCK"
+      }
+    ],
+    "members": "Alf, Hugo",
+    "website": "http://luis.miguel.com.mex",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
+  },
+  {
+    "artistUUID": "72d4ba20-413c-43a8-b1e1-0fcdfb7dff23",
+    "name": "Luis Miguel",
+    "genres": [
+      {
+        "genreUUID": "d4adf88d-0f85-4021-9a09-295c8f2b8694",
+        "name": "ROCK"
+      }
+    ],
+    "members": "Alf, Hugo",
+    "website": "http://luis.miguel.com.mex",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
+  },
+  {
+    "artistUUID": "05e40a72-d708-4ade-bc12-a2f03e21a804",
+    "name": "Luis Miguel",
+    "genres": [
+      {
+        "genreUUID": "a70de85c-88e2-4018-8a40-97f36daff3de",
+        "name": "ROCK"
+      }
+    ],
+    "members": "Alf, Hugo",
+    "website": "http://luis.miguel.com.mex",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
+  },
+  {
+    "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218",
+    "name": "Luis Miguel",
+    "genres": [
+      {
+        "genreUUID": "208f8546-d850-439e-ae2c-25eaf6c5856c",
+        "name": "ROCK"
+      }
+    ],
+    "members": "Alf, Hugo",
+    "website": "http://luis.miguel.com.mex",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119"
+  }
 ]

@@ -2,17 +2,18 @@ import {Injectable} from '@angular/core';
 import {LocalstorageService} from "./localstorage.service";
 
 import {v4 as uuidv4} from 'uuid';
-import { ArtistModel } from '@core/models/artist.model';
-import { AlbumModel } from '@core/models/album.model';
-import { SongModel } from '@core/models/song.model';
-import { GenreModel } from '@core/models/genre.model';
-import { AlbumSongModel } from '@core/models/album-song.model';
-import { SongProgressModel } from '@core/models/song-progress.model';
+import {ArtistModel} from '@core/models/artist.model';
+import {AlbumModel} from '@core/models/album.model';
+import {SongModel} from '@core/models/song.model';
+import {GenreModel} from '@core/models/genre.model';
+import {AlbumSongModel} from '@core/models/album-song.model';
+import {SongProgressModel} from '@core/models/song-progress.model';
 
 
 import * as dataArtist from '../../data/artist.json';
 import * as dataAlbum from '../../data/album.json';
 import * as dataSong from '../../data/song.json';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -160,16 +161,14 @@ export class BusinessLogicService {
     }
     return songsWithStates;
   }
- 
-  SetDataDefault(){
-    const Artist:any = JSON.stringify(dataArtist);  ;
-    this.localstorageService.setCollection(this.keyArtists, Artist);
 
-    const Album:any = JSON.stringify(dataAlbum);  ;
-    this.localstorageService.setCollection(this.keyAlbums,Album);
+  SetDataDefault() {
 
-    const Song:any = JSON.stringify(dataSong);  ;
-    this.localstorageService.setCollection(this.keySongs,Song);
+    this.localstorageService.setCollection(this.keyArtists, JSON.stringify((dataArtist as any).default));
+
+    this.localstorageService.setCollection(this.keyAlbums, JSON.stringify((dataAlbum as any).default));
+
+    this.localstorageService.setCollection(this.keySongs, JSON.stringify((dataSong as any).default));
   }
 
 }
