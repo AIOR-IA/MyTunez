@@ -32,7 +32,7 @@ export class RegistrationLogicService {
         genres: artistForm.genres.value,
         members: artistForm.members.value,
         website: artistForm.website.value,
-        image: url
+        image: url.toString()
       }
       console.warn("ARTIST NEW DTO")
       console.log(artistNew);
@@ -57,7 +57,7 @@ export class RegistrationLogicService {
         title: albumForm.title.value,
         genre: albumForm.genre.value,
         year: albumForm.year.value,
-        imageCover: url,
+        imageCover: url.toString(),
         artistUUID: albumForm.artist.value,
       }
       console.warn("ARTIST NEW DTO")
@@ -90,7 +90,7 @@ export class RegistrationLogicService {
           genre: songForm.genre.value,
           year: songForm.year.value,
           duration: durationSong,
-          linkSong: url,
+          linkSong: url.toString(),
           albumUUID: songForm.album.value,
         }
         console.warn("SONG NEW DTO")
