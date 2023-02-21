@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ArtistModel } from '@core/models/artist.model';
-import { BusinessLogicService } from '@shared/services/business-logic.service';
+import {Component, OnInit} from '@angular/core';
+import {ArtistModel} from '@core/models/artist.model';
+import {BusinessLogicService} from '@shared/services/business-logic.service';
+import {MatDialog} from '@angular/material/dialog';
+import {RegistrationFormComponent} from "@shared/components/registration-form/registration-form.component";
 
 @Component({
   selector: 'app-sides-bar',
@@ -11,33 +13,17 @@ export class SidesBarComponent implements OnInit {
 
   mainMenu: {
     defaultOptions: Array<any>, accessLink: Array<any>
-  } = { defaultOptions: [], accessLink: [] }
+  } = {defaultOptions: [], accessLink: []}
 
-  customOptions: ArtistModel[] = []
 
-  private firstElement:ArtistModel ={
-    artistUUID: "All",
-    name: "All Artists",
-    genres: [],
-    members: "",
-    website: "",
-    image: ""
-}
-Artist : ArtistModel[]=[];
-constructor(private logicService : BusinessLogicService) { 
-    this.Artist= logicService.artistCollection;
-    console.log(this.Artist);
-}
-  linksMenu: any[] = [
-    {
-      name:'Home',
-      icon:'fa-house'
-    },
-    {
-      name:'Search',
-      icon:'fa-magnifying-glass'
-    }
-  ]
+  customOptions: Array<any> = []
+  Artist: ArtistModel[] = [];
+
+  constructor(private logic: BusinessLogicService, public dialog: MatDialog) {
+    this.Artist = logic.artistCollection;
+    console.log(this.Artist[0].image);
+
+  }
 
 
   ngOnInit(): void {
@@ -47,17 +33,17 @@ constructor(private logicService : BusinessLogicService) {
         icon: 'fa-house',
         router: ['/', 'auth']
       },
-      {
-        name: 'Search',
-        icon: 'fa-magnifying-glass',
-        router: ['/', 'tracks']
-      },
-      {
-        name: 'Your Library',
-        icon: 'fa-book',
-        router: ['/', 'favorites'],
-        query: { hola: 'mundo' }
-      }
+      // {
+      //   name: 'Search',
+      //   icon: 'fa-magnifying-glass',
+      //   router: ['/', 'tracks']
+      // },
+      // {
+      //   name: 'Your Library',
+      //   icon: 'fa-book',
+      //   router: ['/', 'favorites'],
+      //   query: {hola: 'mundo'}
+      // }
     ]
 
     this.mainMenu.accessLink = [
@@ -65,13 +51,40 @@ constructor(private logicService : BusinessLogicService) {
         name: 'Create Artist',
         icon: 'fa-square-plus'
       },
-      {
-        name: 'Liked Songs',
-        icon: 'fa-hand-holding-heart'
-      }
+      // {
+      //   name: 'Liked Songs',
+      //   icon: 'fa-hand-holding-heart'
+      // }
     ]
 
-    this.customOptions = this.Artist; 
-    this.customOptions.unshift(this.firstElement);
+
+    this.customOptions = [
+      {
+        name: 'ALL ARTISTS',
+        router: ['/']
+      },
+      {
+        name: 'Pepe Aguilar',
+        router: ['/']
+      },
+    ]
   }
+
+  addPopUpContext() {
+    console.log("contexto")
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(RegistrationFormComponent, {
+      height: '770px',
+      width: '550px',
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
+
 }

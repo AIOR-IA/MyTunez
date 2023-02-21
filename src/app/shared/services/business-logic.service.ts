@@ -88,12 +88,12 @@ export class BusinessLogicService {
     return currentSongs;
   }
 
-  addArtist(artist: ArtistModel) {
-    console.log("here = ", this.artistCollection)
+   addArtist(artist: ArtistModel) {
+    // console.log("here = ", this.artistCollection)
     this.artistCollection.push(artist);
     this.localstorageService.setCollection(this.keyArtists, JSON.stringify(this.artistCollection));
     this.artistCollection = this.getContextCollection(this.keyArtists);
-    console.log(this.artistCollection);
+    // console.log(this.artistCollection);
   }
 
   addAlbum(album: AlbumModel) {
@@ -111,11 +111,6 @@ export class BusinessLogicService {
   generateUUID() {
     return uuidv4();
   }
-
-  getAllArtist() {
-    // Pendient...
-  }
-
   getAlbumsSongsByArtistUUID(artistUUID: string) {
     let albumsSongs: Array<AlbumSongModel> = [];
     for (let album of this.albumCollection) {
