@@ -171,4 +171,22 @@ export class BusinessLogicService {
     this.localstorageService.setCollection(this.keySongs, JSON.stringify((dataSong as any).default));
   }
 
+  getSongsByidAlbum(albumUUID: string) {
+    let currentSongs: any;
+    this.songCollection = this.getContextCollection(this.keySongs);
+    currentSongs = this.songCollection.filter(song => song.albumUUID == albumUUID);
+    return currentSongs;
+  }
+  getAlbumById(albumUUID: string):AlbumModel {
+    let currentAlbum: any;
+    this.albumCollection = this.getContextCollection(this.keyAlbums);
+    currentAlbum = this.albumCollection.find(album => album.albumUUID == albumUUID);
+    return currentAlbum;
+  }
+  getArtistById(artistUUID: string):ArtistModel {
+    let currentArtist: any;
+    this.artistCollection = this.getContextCollection(this.keyArtists);
+    currentArtist = this.artistCollection.find(artist => artist.artistUUID == artistUUID);
+    return currentArtist;
+  }
 }

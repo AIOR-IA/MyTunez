@@ -1,4 +1,4 @@
 <div class="favoritesPages">
-    <app-play-list-header></app-play-list-header>
-    <app-play-list-body></app-play-list-body>
+    <app-play-list-header [dataAlbum]="DataAlbum" [nameArtist]="DataArtist.name" [TotalSongs]="DataSongs.length"></app-play-list-header>
+    <app-play-list-body [dataAlbum]="DataAlbum" [nameArtist]="DataArtist.name" [dataSongs]="DataSongs"></app-play-list-body>
 </div>

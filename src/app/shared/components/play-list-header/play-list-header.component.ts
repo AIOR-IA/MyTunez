@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AlbumModel } from '../../../core/models/album.model';
 
 @Component({
   selector: 'app-play-list-header',
@@ -7,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayListHeaderComponent implements OnInit {
 
+
+
+  @Input() nameArtist: string;
+  @Input() TotalSongs: number;
+  @Input() dataAlbum: AlbumModel;
   constructor() { }
 
   ngOnInit(): void {

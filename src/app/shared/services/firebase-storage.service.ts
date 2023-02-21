@@ -20,6 +20,5 @@ export class FirebaseStorageService {
     }).catch( error =>{
       console.log(error);
     })
-
   }
 }

@@ -1,56 +1,56 @@
 [{
         "albumUUID": "400f11bf-363a-4764-af0d-59274fcc8a5f",
-        "title": "Romances",
+        "title": "Back in Black",
         "genre": {
             "genreUUID": "f1a5f45a-52af-4a7f-9e8d-a716f9feddbd",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1980",
+        "imageCover": "https://m.media-amazon.com/images/M/MV5BOTFiMjliMjMtYzM5MC00YWRjLWJlYTktYjJlYzJhZjhiNmVhXkEyXkFqcGdeQXVyMzM4MjM0Nzg@._V1_.jpg",
         "artistUUID": "ab3af6b1-9797-493f-84f5-e41f34c5a69e"
     },
     {
         "albumUUID": "c835a90c-d960-4421-9f71-e6bab5b7f4bc",
-        "title": "Romances",
+        "title": "Vida",
         "genre": {
             "genreUUID": "0662d30b-f8b6-4fcf-bf17-a6f60813f932",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2019",
+        "imageCover": "https://www.pandoraproducciones.com/sites/default/files/imagenes/pandora-producciones-luis-fonsi-vida-world-tour-palencia-enero-2019.jpg",
         "artistUUID": "0315ae34-658a-458d-a740-c99354e863bd"
     },
     {
         "albumUUID": "1e980a9c-bae2-4aef-8b45-ca7d92d8c60d",
-        "title": "Romances",
+        "title": "De Buenos Aires para el mundo",
         "genre": {
             "genreUUID": "982dd908-6138-4c4a-bef6-64360a6122d6",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2020",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b27310c74bb7c32ff79db8dcb4d5",
         "artistUUID": "72d4ba20-413c-43a8-b1e1-0fcdfb7dff23"
     },
     {
         "albumUUID": "add0a268-6850-40ad-8d50-b35ce04a1034",
-        "title": "Romances",
+        "title": "After Hours",
         "genre": {
             "genreUUID": "dede684d-1fbd-45d9-9dfe-75655def2397",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2020",
+        "imageCover": "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
         "artistUUID": "05e40a72-d708-4ade-bc12-a2f03e21a804"
     },
     {
         "albumUUID": "4e0a6cb9-ef0d-4338-83c0-33dde5c472a9",
-        "title": "Romances",
+        "title": "Beauty Behind the Madness",
         "genre": {
             "genreUUID": "0ffa9704-c9b4-4738-9bf7-78613d48b2c0",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2015",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b2737fcead687e99583072cc217b",
         "artistUUID": "05e40a72-d708-4ade-bc12-a2f03e21a804"
     },
     {
@@ -60,151 +60,151 @@
             "genreUUID": "7ed499ad-c52b-4e3f-b456-8aed598c54ee",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1997",
+        "imageCover": "https://upload.wikimedia.org/wikipedia/en/f/ff/Romances_Luis_Miguel.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "56d2f830-7829-4761-9d35-984a2bd25ac8",
-        "title": "Romances",
+        "title": "Amarte es un placer",
         "genre": {
             "genreUUID": "d0793e6c-6b96-4bd1-9e66-e8df51322f36",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1999",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b2731b25e96513de862a69d1c54c",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "552a38de-430d-4dd6-ae63-5fb51fe993c2",
-        "title": "Romances",
+        "title": "20 años",
         "genre": {
             "genreUUID": "03f33296-6a7f-4a74-a611-bb12aa6e3890",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1990",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b273b1504069929fe0a81594eb33",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "11fef6f6-f1ee-4f15-98cc-218d41db6294",
-        "title": "Romances",
+        "title": "El concierto",
         "genre": {
             "genreUUID": "a564aeb0-5d3f-42da-8bba-42432ad27922",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1995",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b273169e706f0973015f03f4de97",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "edec1f04-8553-4be8-8999-532856e8559a",
-        "title": "Romances",
+        "title": "Aries",
         "genre": {
             "genreUUID": "e6a8bd0b-a057-44a2-b606-3b8a07af82da",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1993",
+        "imageCover": "https://www.infobae.com/new-resizer/CeFvsGQ94WSWz-DMRnS7gDJpoPU=/1200x900/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/TDDXH7SIYBAE3CONDXS3VBUONI.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "f56fefaf-74dc-41d3-901d-d048e4d56c28",
-        "title": "Romances",
+        "title": "México en la piel",
         "genre": {
             "genreUUID": "1c3fbb8d-a656-4729-b215-10c501736f17",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2004",
+        "imageCover": "https://upload.wikimedia.org/wikipedia/en/9/9a/Mexicoenlapielluismiguel.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "12ebf32c-47bf-4c4b-a3eb-3d3c09ae3373",
-        "title": "Romances",
+        "title": "Navidades",
         "genre": {
             "genreUUID": "a1eac21c-f070-48df-96cf-2fbbe56c7fd2",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2006",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b27315a3198274f6ddbebc681670",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "61131333-fddb-469d-8288-c987ab304ee6",
-        "title": "Romances",
+        "title": "¡México por siempre!",
         "genre": {
             "genreUUID": "623d2b3b-0f7f-452c-a01f-bae26cd25f51",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2017",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b2735c342174dcbadcc1d686121c",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "13ad602e-b501-4cd4-830c-8b99c91429ce",
-        "title": "Romances",
+        "title": "Cómplices",
         "genre": {
             "genreUUID": "63023e83-2d04-41d2-a596-eaf5325ef53d",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2008",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b273bff862e2b02cc9e346ab21be",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "f83763a5-577a-4372-9268-fe0a868af46d",
-        "title": "Romances",
+        "title": "Nada es igual",
         "genre": {
             "genreUUID": "93200875-f09c-44c8-b2a0-c477a10189b1",
             "name": "ROCK"
         },
         "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "imageCover": "https://cdn-3.expansion.mx/dims4/default/de66010/2147483647/strip/true/crop/1000x879+0+0/resize/600x527!/format/webp/quality/90/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F68%2F46%2F76dbc05845ffa562021e41be6673%2Fnada-disco.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "4412dc72-32a1-47b5-b5e0-43058f14aa74",
-        "title": "Romances",
+        "title": "Segundo romance",
         "genre": {
             "genreUUID": "ecc24467-2a7f-451b-9774-94ac592f5810",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1994",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b273830debe4a54e0122a6138a71",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "902d0825-2861-4133-8472-f16afe004837",
-        "title": "Romances",
+        "title": "Busca una mujer",
         "genre": {
             "genreUUID": "f98bf9e0-9442-4e47-bb4a-eb8a37392ca4",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "1988",
+        "imageCover": "https://upload.wikimedia.org/wikipedia/en/2/26/Buscaunamujerluismiguel.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "f5039b8b-f1d6-4174-b9ab-f1c8f212af23",
-        "title": "Romances",
+        "title": "Mis romances",
         "genre": {
             "genreUUID": "cdbce9cd-ce67-4bfc-8905-d7763508f2cd",
             "name": "ROCK"
         },
-        "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "year": "2001",
+        "imageCover": "https://i.scdn.co/image/ab67616d0000b273fce696a58c41bc9d3d9135ae",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     },
     {
         "albumUUID": "827048fd-d738-401f-8c17-462623a8164d",
-        "title": "Romances",
+        "title": "Luis Miguel",
         "genre": {
             "genreUUID": "6a669d57-2013-4b85-a14b-72616196e867",
             "name": "ROCK"
         },
         "year": "2010",
-        "imageCover": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Images%2FArtist%2FLuisMiguel?alt=media&token=d5e516fa-8ffe-4d48-9738-31ef07cff119",
+        "imageCover": "https://upload.wikimedia.org/wikipedia/en/7/75/LMpromo2010.jpg",
         "artistUUID": "3ba1d021-ad1b-4b8a-af78-2afcaca1f218"
     }
 ]

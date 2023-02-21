@@ -19,11 +19,10 @@
     </ul>
     <div class="sidebar__separator sidebar__separator--line"></div>
     <ul class="sidebar__list sidebar__list--three">
-        <li [routerLink]="['/tracks', item.name]" *ngFor="let item of customOptions">
+        <li [routerLink]="['/tracks', item.artistUUID]" *ngFor="let item of customOptions">
             <div class="sidebar__list__wrapper__item">
                 <span class="sidebar__list sidebar__list--label">{{item.name}}</span>
             </div>
         </li>
     </ul>
-    <div>FORM FLOTANTE</div>
 </div>

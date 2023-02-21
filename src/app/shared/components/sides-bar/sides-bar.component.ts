@@ -13,9 +13,21 @@ export class SidesBarComponent implements OnInit {
     defaultOptions: Array<any>, accessLink: Array<any>
   } = { defaultOptions: [], accessLink: [] }
 
-  customOptions: Array<any> = []
+  customOptions: ArtistModel[] = []
 
-
+  private firstElement:ArtistModel ={
+    artistUUID: "All",
+    name: "All Artists",
+    genres: [],
+    members: "",
+    website: "",
+    image: ""
+}
+Artist : ArtistModel[]=[];
+constructor(private logicService : BusinessLogicService) { 
+    this.Artist= logicService.artistCollection;
+    console.log(this.Artist);
+}
   linksMenu: any[] = [
     {
       name:'Home',
@@ -26,11 +38,7 @@ export class SidesBarComponent implements OnInit {
       icon:'fa-magnifying-glass'
     }
   ]
-   Artist : ArtistModel[]=[];
-  constructor(private logic : BusinessLogicService) { 
-      this.Artist= logic.artistCollection;
-      console.log(this.Artist[0].image);
-  }
+
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -63,26 +71,7 @@ export class SidesBarComponent implements OnInit {
       }
     ]
 
-    this.customOptions = [
-      {
-        name: 'ALL',
-        router: ['/']
-      },
-      {
-        name: this.Artist[0].name,
-        router: ['/']
-      },
-      {
-        name: 'One Love',
-        router: ['/']
-      },
-      {
-        name: 'Mi lista º4',
-        router: ['/']
-      }
-    ]
-
-
+    this.customOptions = this.Artist; 
+    this.customOptions.unshift(this.firstElement);
   }
-
 }

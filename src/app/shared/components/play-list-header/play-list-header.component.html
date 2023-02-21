@@ -1,12 +1,12 @@
-<div class="play-list-header">
-    <div class="cover">
-        <div class="cover-mock">
-            <i class="fa-regular fa-heart"></i>
+<div class="playlistheader">
+    <div class="playlistheader__cover">
+        <div class="playlistheader__cover__mock">
+            <img appImgBroken [src]="dataAlbum.imageCover ">
         </div>
     </div>
-    <div class="content-text">
-        <div class="small-text">Playlist</div>
-        <h1 class="title">Canciones que te gustan</h1>
-        <h5 class="sub-title">Leifer Jesus Mendez Zambrano <span class="count-tracks">206 canciones</span> </h5>
+    <div class="playlistheader__content">
+        <div class="playlistheader__content__smalltext">ALBUM</div>
+        <h1 class="playlistheader__content__title">{{dataAlbum.title}}</h1>
+        <h5 class="playlistheader__content__subtitle">{{nameArtist}}<span class="playlistheader__content__subtitle--countTracks">{{TotalSongs}} songs</span> </h5>
     </div>
 </div>

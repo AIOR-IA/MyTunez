@@ -3,9 +3,9 @@
 
     <div class="section--generic__player--zone">
         <ul class="player--list" [ngClass]="{'card-small':mode === 'small','card-big':mode === 'big'}">
-            <li *ngFor="let info of dataTracks">
-                <!-- <app-card-player [track]="track" [mode]="mode"></app-card-player> -->
-                <app-card-player [mode]="mode" [track]="info"></app-card-player>
+            <li *ngFor="let info of dataAlbum; let indice=index">
+
+                <app-card-player [dataArtist]="dataArtist" [mode]="mode" [track]="info"></app-card-player>
             </li>
         </ul>
     </div>

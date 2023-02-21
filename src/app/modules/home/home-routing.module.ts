@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren:() => import(`@modules/history/history.module`).then(module => module.HistoryModule)
   },
   {
-    path:'favorites',
+    path:'favorites/:idArtist/:idAlbum',
     loadChildren:() => import(`@modules/favorites/favorites.module`).then(module => module.FavoritesModule)
   },
 ];
