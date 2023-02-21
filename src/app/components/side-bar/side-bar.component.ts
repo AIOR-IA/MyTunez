@@ -20,16 +20,16 @@ export class SideBarComponent implements OnInit {
   }
   upload($event:any): void {
     this.fileError = false;
-    
+
     this.path = $event.target.files[0];
     this.imageType = $event.target.files[0].type;
     this.getDuration(this.path);
   }
   CargarArchivosWeb() {
-    
+
     console.log(uuidv4());
-    //  this.firebaeStorageService.UploadImages(this.path);
-    
+     // this.firebaeStorageService.UploadImages(this.path);
+
   }
   getDuration(file:any) {
     const audio = new Audio();

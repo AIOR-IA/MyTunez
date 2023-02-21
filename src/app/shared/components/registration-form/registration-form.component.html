@@ -1,0 +1,363 @@
+<!-- REGISTER ARTIST-->
+<mat-tab-group dynamicHeight="true">
+  <mat-tab label="Register Artist">
+
+    <form [formGroup]="registerArtistForm" (ngSubmit)="onSubmitArtist()">
+      <!--      1-NAME-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Artist name (*)</mat-label>
+          <input matInput
+                 formControlName="name">
+
+          <span *ngIf="artistForm.name.errors && (artistForm.name.dirty || artistForm.name.touched)">
+            <span *ngIf="artistForm.name.errors.required">
+               <mat-hint>Field is required</mat-hint>
+            </span>
+            <span *ngIf="artistForm.name.errors.empty">
+               <mat-hint>Field can not be empty</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      2-DROPDOWN GENRES-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Genres (*)</mat-label>
+          <mat-select formControlName="genres"
+                      multiple>
+            <mat-option *ngFor="let genre of genres"
+                        [value]="{genreUUID: genre.genreUUID, name: genre.name}">{{genre.name}} </mat-option>
+          </mat-select>
+
+          <span *ngIf="artistForm.genres.errors && (artistForm.genres.dirty || artistForm.genres.touched)">
+            <span *ngIf="artistForm.genres.errors.required">
+               <mat-hint>Select least a genre</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      3-MEMBERS-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Members (*)</mat-label>
+          <input matInput
+                 formControlName="members">
+
+          <span *ngIf="artistForm.members.errors && (artistForm.members.dirty || artistForm.members.touched)">
+           <span *ngIf="artistForm.members.errors.required">
+               <mat-hint>Field is required</mat-hint>
+            </span>
+            <span *ngIf="artistForm.members.errors.empty">
+               <mat-hint>Field can not be empty</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      4-WEBSITE-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Web site (*)</mat-label>
+          <input matInput
+                 formControlName="website"
+          >
+          <span *ngIf="artistForm.website.errors && (artistForm.website.dirty || artistForm.website.touched)">
+           <span *ngIf="artistForm.website.errors.required">
+               <mat-hint>Field is required</mat-hint>
+            </span>
+            <span *ngIf="artistForm.website.errors.empty">
+               <mat-hint>Field can not be empty</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+      <!--      5-IMAGE-->
+      <mat-label>Image (*)</mat-label>
+      <br><br>
+      <app-file-upload formControlName="image"></app-file-upload>
+      <br>
+      <span *ngIf="artistForm.image.errors && (artistForm.image.dirty || artistForm.image.touched)">
+           <span *ngIf="artistForm.image.errors.required">
+               <mat-hint>Image is required</mat-hint>
+            </span>
+            <span *ngIf="artistForm.image.errors.requiredFileType">
+               <mat-hint>Only .png and .jpg format is allowed</mat-hint>
+            </span>
+      </span>
+      <br>
+
+      <!--      BUTTON SAVE AND CANCEL-->
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
+          <span *ngIf="displaySpinnerArtist">
+             <div class="loader"></div>
+          </span>
+
+          <span *ngIf="displayButtonArtist">
+          <button mat-stroked-button color="primary"
+                  [disabled]="registerArtistForm.invalid">
+            Save
+          </button>
+          </span>
+
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+    </form>
+
+  </mat-tab>
+
+
+  <!-- REGISTER ALBUM-->
+  <mat-tab label="Register Album">
+    <form [formGroup]="registerAlbumForm" (ngSubmit)="onSubmitAlbum()">
+      <!--      1-NAME-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Title (*)</mat-label>
+          <input matInput
+                 formControlName="title">
+
+          <span *ngIf="albumForm.title.errors && (albumForm.title.dirty || albumForm.title.touched)">
+            <span *ngIf="albumForm.title.errors.required">
+               <mat-hint>Field is required</mat-hint>
+            </span>
+            <span *ngIf="albumForm.title.errors.empty">
+               <mat-hint>Field can not be empty</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      2-DROPDOWN GENRES-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Genres (*)</mat-label>
+          <mat-select formControlName="genre">
+            <mat-option *ngFor="let genre of genres"
+                        [value]="{genreUUID: genre.genreUUID, name: genre.name}">{{genre.name}} </mat-option>
+          </mat-select>
+
+          <span *ngIf="albumForm.genre.errors && (albumForm.genre.dirty || albumForm.genre.touched)">
+            <span *ngIf="albumForm.genre.errors.required">
+               <mat-hint>Select least a genre</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      3-YEAR-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Year (*)</mat-label>
+          <mat-select formControlName="year">
+            <mat-option *ngFor="let year of dropdownYears"
+                        [value]="year.name">{{year.name }} </mat-option>
+          </mat-select>
+
+          <span *ngIf="albumForm.year.errors && (albumForm.year.dirty || albumForm.year.touched)">
+            <span *ngIf="albumForm.year.errors.required">
+               <mat-hint>Select least a year</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+
+      <!--      4-DROPDOWN ARTISTS-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Artists (*)</mat-label>
+          <mat-select formControlName="artist">
+            <mat-option *ngFor="let artist of artists"
+                        [value]="artist.artistUUID">{{artist.name}} </mat-option>
+          </mat-select>
+
+          <span *ngIf="albumForm.artist.errors && (albumForm.artist.dirty || albumForm.artist.touched)">
+            <span *ngIf="albumForm.artist.errors.required">
+               <mat-hint>Select least a artist</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      5-IMAGE COVER-->
+      <mat-label>Image Cover (*)</mat-label>
+      <br><br>
+      <app-file-upload formControlName="imageCover"
+      ></app-file-upload>
+      <br>
+      <span *ngIf="albumForm.imageCover.errors && (albumForm.imageCover.dirty || albumForm.imageCover.touched)">
+           <span *ngIf="albumForm.imageCover.errors.required">
+               <mat-hint>Image is required</mat-hint>
+            </span>
+            <span *ngIf="albumForm.imageCover.errors.requiredFileType">
+               <mat-hint>Only .png and .jpg format is allowed</mat-hint>
+            </span>
+      </span>
+      <br>
+
+      <!--      BUTTON SAVE AND CANCEL-->
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <span *ngIf="displaySpinnerAlbum">
+             <div class="loader"></div>
+          </span>
+          <span *ngIf="displayButtonAlbum">
+            <button mat-stroked-button color="primary"
+                    [disabled]="registerAlbumForm.invalid">
+            Save
+          </button>
+
+          </span>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-tab>
+
+
+  <!--  REGISTER SONG-->
+  <mat-tab label="Register Song">
+    <form [formGroup]="registerSongForm" (ngSubmit)="onSubmitSong()">
+      <!--      1-NAME-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Title (*)</mat-label>
+          <input matInput
+                 formControlName="title">
+
+          <span *ngIf="songForm.title.errors && (songForm.title.dirty || songForm.title.touched)">
+            <span *ngIf="songForm.title.errors.required">
+               <mat-hint>Field is required</mat-hint>
+            </span>
+            <span *ngIf="songForm.title.errors.empty">
+               <mat-hint>Field can not be empty</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      2-DROPDOWN GENRES-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Genres (*)</mat-label>
+          <mat-select formControlName="genre">
+            <mat-option *ngFor="let genre of genres"
+                        [value]="{genreUUID: genre.genreUUID, name: genre.name}">{{genre.name}} </mat-option>
+          </mat-select>
+
+          <span *ngIf="songForm.genre.errors && (songForm.genre.dirty || songForm.genre.touched)">
+            <span *ngIf="songForm.genre.errors.required">
+               <mat-hint>Select least a genre</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      3-YEAR-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Year (*)</mat-label>
+          <mat-select formControlName="year">
+            <mat-option *ngFor="let year of dropdownYears"
+                        [value]="year.name">{{year.name }} </mat-option>
+          </mat-select>
+
+          <span *ngIf="songForm.year.errors && (songForm.year.dirty || songForm.year.touched)">
+            <span *ngIf="songForm.year.errors.required">
+               <mat-hint>Select least a year</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      4-DROPDOWN ARTISTS-->
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Artists (*)</mat-label>
+          <mat-select formControlName="artist" (selectionChange)="getAlbumsFromArtist(this.songForm.artist.value)">
+            <mat-option *ngFor="let artist of artists"
+                        [value]="artist.artistUUID">{{artist.name}}
+
+            </mat-option>
+          </mat-select>
+
+          <span *ngIf="songForm.artist.errors && (songForm.artist.dirty || songForm.artist.touched)">
+            <span *ngIf="songForm.artist.errors.required">
+               <mat-hint>Select least a artist</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+
+      <!--      5-DROPDOWN ALBUM-->
+      <span *ngIf="albums.length>0">
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Albums (*)</mat-label>
+          <mat-select formControlName="album">
+            <mat-option *ngFor="let album of albums"
+                        [value]="album.albumUUID">{{album.title}} </mat-option>
+          </mat-select>
+
+          <span *ngIf="songForm.album.errors && (songForm.album.dirty || songForm.album.touched)">
+            <span *ngIf="songForm.album.errors.required">
+               <mat-hint>Select least a album</mat-hint>
+            </span>
+          </span>
+        </mat-form-field>
+      </p>
+    </span>
+      <!--      6-LINK SONG -->
+      <mat-label>File Song (*)</mat-label>
+      <br><br>
+      <app-file-upload formControlName="linkSong"></app-file-upload>
+      <br>
+      <span *ngIf="songForm.linkSong.errors && (songForm.linkSong.dirty || songForm.linkSong.touched)">
+           <span *ngIf="songForm.linkSong.errors.required">
+               <mat-hint>Image is required</mat-hint>
+            </span>
+            <span *ngIf="songForm.linkSong.errors.requiredFileType">
+               <mat-hint>Only .mp3 format is allowed</mat-hint>
+            </span>
+      </span>
+      <br>
+
+      <!--      BUTTON SAVE AND CANCEL-->
+      <mat-divider></mat-divider>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <button mat-stroked-button (click)="onNoClick()">Cancel</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
+          <span *ngIf="displaySpinnerSong">
+             <div class="loader"></div>
+          </span>
+          <span *ngIf="displayButtonSong">
+            <button mat-stroked-button color="primary"
+                    [disabled]="registerSongForm.invalid">
+            Save
+          </button>
+          </span>
+
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-tab>
+</mat-tab-group>
+
