@@ -9,6 +9,7 @@ import * as dropdownYears from '../../../data/dropdown-years.json'
 import {YearModel} from "@core/models/year.model";
 import {AlbumModel} from "@core/models/album.model";
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registration-form',
@@ -183,7 +184,7 @@ export class RegistrationFormComponent implements OnInit {
         this.getArtists()
 
         this.registerArtistForm.reset()
-    
+        this.messagePopup("Artist was registered", "SUCCESSFUL");
       });
     }
   }
@@ -195,6 +196,7 @@ export class RegistrationFormComponent implements OnInit {
       this.registrationLogic.registerAlbum(this.albumForm).then((res) => {
         this.hideSpinner("album")
         this.registerAlbumForm.reset()
+        this.messagePopup("Album was registered", "SUCCESSFUL");
 
       });
     }
@@ -209,7 +211,7 @@ export class RegistrationFormComponent implements OnInit {
       this.registrationLogic.registerSong(this.songForm).then((res) => {
         this.hideSpinner("song")
         this.registerSongForm.reset()
-
+        this.messagePopup("Song was registered", "SUCCESSFUL");
 
       });
     }
@@ -252,5 +254,13 @@ export class RegistrationFormComponent implements OnInit {
     this.dropdownYears = (dropdownYears as any).default
   }
 
+  messagePopup(text: string, type: string) {
+    Swal.fire({
+      title: type,
+      allowOutsideClick: false,
+      icon: 'success',
+      text: text
+    });
+  }
 
 }

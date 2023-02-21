@@ -111,11 +111,6 @@ export class BusinessLogicService {
   generateUUID() {
     return uuidv4();
   }
-
-  getAllArtist() {
-    // Pendient...
-  }
-
   getAlbumsSongsByArtistUUID(artistUUID: string) {
     let albumsSongs: Array<AlbumSongModel> = [];
     for (let album of this.albumCollection) {
