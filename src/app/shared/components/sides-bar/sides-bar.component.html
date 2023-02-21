@@ -1,5 +1,5 @@
 <div class="sidebar">
-    <div><i class=" ">...</i></div>
+    <div><i class=" ">My Tunez</i></div>
     <ul class="sidebar__list sidebar__list--one">
         <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions">
             <div class="sidebar__list__wrapper__item">
@@ -13,7 +13,7 @@
         <li *ngFor="let item of mainMenu.accessLink">
             <div class="sidebar__list__wrapper__item">
                 <i [ngClass]="['fa',item.icon]"></i>
-                <span class="sidebar__list sidebar__list--label">{{item.name}}</span>
+                <span class="sidebar__list sidebar__list--label" (click)="addPopUpContext()">{{item.name}}</span>
             </div>
         </li>
     </ul>
