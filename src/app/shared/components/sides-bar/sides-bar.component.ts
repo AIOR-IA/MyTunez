@@ -20,14 +20,6 @@ export class SidesBarComponent implements OnInit {
   customOptions: Array<any> = []
   Artist: ArtistModel[] = [];
 
-  private firstElement:ArtistModel ={
-    artistUUID: "All",
-    name: "All Artists",
-    genres: [],
-    members: "",
-    website: "",
-    image: ""
-}
 
   constructor(private logic: BusinessLogicService, public dialog: MatDialog , private trackService: TrackService) {
     this.Artist = logic.artistCollection;
@@ -66,10 +58,12 @@ export class SidesBarComponent implements OnInit {
     ]
 
     this.customOptions = this.Artist; 
-    this.customOptions.unshift(this.firstElement);
-
+    
+    this.createArtistDefault();
+    
     const observer1$ =this.trackService.dataFormArtist$.subscribe(res=>{
       this.customOptions = res;
+      this.createArtistDefault();
     })
 
 
@@ -79,7 +73,7 @@ export class SidesBarComponent implements OnInit {
     console.log("contexto")
     this.openDialog();
   }
-
+  
   openDialog(): void {
     const dialogRef = this.dialog.open(RegistrationFormComponent, {
       height: '770px',
@@ -91,5 +85,15 @@ export class SidesBarComponent implements OnInit {
 
     });
   }
-
+  
+  createArtistDefault():void {
+    let firstElement:ArtistModel ={
+      artistUUID: "All",
+      name: "All Artists",
+      genres: [],
+      members: "",
+      website: "",
+      image: ""}
+    this.customOptions.unshift(firstElement);
+  }
 }

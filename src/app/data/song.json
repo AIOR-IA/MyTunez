@@ -152,7 +152,8 @@
         "year": "2008",
         "duration": "04:32",
         "linkSong": "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Songs%2FLuisFonsi%2FVida%2FQue%20Quieres%20De%20Mi%20Luis%20Fonsi%208%20Letra.mp3?alt=media&token=b57ba680-6945-42de-9c25-046ec5c40014",
-        "albumUUID": "c835a90c-d960-4421-9f71-e6bab5b7f4bc"
+        "albumUUID": "c835a90c-d960-4421-9f71-e6bab5b7f4bc",
+        "state": true
     },
     {
         "songUUID": "67175d82-5a44-49c5-9181-86589870b9ef",
