@@ -8,8 +8,8 @@ import { MediaPlayerModel } from '../../core/models/media-player.model';
 export class MultimediaService {
 
   callback: EventEmitter<any> = new EventEmitter<any>();
-  
-  //Get Element Audio HTML 
+
+  //Get Element Audio HTML
   public audio:HTMLAudioElement;
 
   //Get Data infoSong
@@ -18,7 +18,7 @@ export class MultimediaService {
   //Get Data infoSong
   // subject
   public trackPrevious$:BehaviorSubject<string> = new BehaviorSubject("hola");
-  
+
 
   //Get Data timeprogress song
   public timeElapsed$:BehaviorSubject<string> = new BehaviorSubject("00:00");
@@ -32,7 +32,7 @@ export class MultimediaService {
   //Get timeNow song for progressbar
   public playerPercentage$:BehaviorSubject<number> = new BehaviorSubject(0);
 
-  constructor() { 
+  constructor() {
     this.audio = new Audio();
     this.trackInfo$.subscribe(responseInfoAudio=>{
       if(responseInfoAudio){
@@ -57,11 +57,11 @@ export class MultimediaService {
     this.audio.addEventListener('pause',this.setPlayerStatus,false);
     this.audio.addEventListener('ended',this.setPlayerStatus,false);
   }
-  
+
   private calculateTime = ()=>{
     //  console.log('Disparando Evento');
      const {duration,currentTime} = this.audio;
-    //  console.table([duration,currentTime]); 
+    //  console.table([duration,currentTime]);
      this.setTimeElapsed(currentTime);
      this.setTimeRemaining(currentTime,duration);
      this.setPercentage(currentTime,duration);
@@ -134,5 +134,10 @@ export class MultimediaService {
       this.audio.currentTime=0;
     }
     console.log(currentTime)
+  }
+
+  // CONFIGURATION FOR VOLUME
+  changeVolume(number: number) {
+    this.audio.volume = number;
   }
 }

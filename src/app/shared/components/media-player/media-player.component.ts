@@ -1,14 +1,14 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { TrackModel } from '../../../core/models/tracks.model';
-import { MultimediaService } from '../../services/multimedia.service';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {TrackModel} from '../../../core/models/tracks.model';
+import {MultimediaService} from '../../services/multimedia.service';
 
 @Component({
   selector: 'app-media-player',
   templateUrl: './media-player.component.html',
   styleUrls: ['./media-player.component.scss']
 })
-export class MediaPlayerComponent implements OnInit,OnDestroy {
+export class MediaPlayerComponent implements OnInit, OnDestroy {
 
   // mockCover: TrackModel = {
   //   cover:'https://i.scdn.co/image/ab67616d0000b273b1504069929fe0a81594eb33',
@@ -21,8 +21,14 @@ export class MediaPlayerComponent implements OnInit,OnDestroy {
   @ViewChild('progressBar') progressBarHTML: ElementRef;
   listObservers$: Subscription[];
   statePlayer: string = 'paused';
-  constructor(public  multimediaService : MultimediaService ) { }
- 
+
+  volume = 50;
+  stateVoume = "sound";
+
+  constructor(public multimediaService: MultimediaService) {
+    this.multimediaService.changeVolume(this.volume / 100);
+  }
+
 
   ngOnInit(): void {
     // const observeSong$:Subscription = this.multimediaService.callback.subscribe((
@@ -34,39 +40,72 @@ export class MediaPlayerComponent implements OnInit,OnDestroy {
     //    this.mockCover=res;
     //   console.log("se tiene que reproducir la cancion que se reciba aqui", res);
     // })
-    const observerStatus$ = this.multimediaService.playerStatusSong$.subscribe(status =>{
+    const observerStatus$ = this.multimediaService.playerStatusSong$.subscribe(status => {
       console.log("statussss ", status);
-      this.statePlayer=status;
+      this.statePlayer = status;
     })
     this.listObservers$ = [observerStatus$];
 
   }
+
   ngOnDestroy(): void {
     this.listObservers$.forEach(res => res.unsubscribe());
   }
-  public changeStatePlayer():void {
+
+  public changeStatePlayer(): void {
     this.multimediaService.togglePlayerStatus();
   }
 
-  mousePosition(event:MouseEvent){
+  mousePosition(event: MouseEvent) {
     const ElementNative: HTMLElement = this.progressBarHTML.nativeElement;
     const {clientX} = event;
-    const {x,width} = ElementNative.getBoundingClientRect();
+    const {x, width} = ElementNative.getBoundingClientRect();
     const positionX = clientX - x;
     const percentageFromX = (positionX * 100) / width;
     // console.log(`Position(x): ${percentageFromX}`);
     this.multimediaService.SeekAndPlay(percentageFromX);
   }
-  SongPrevious(){
+
+  SongPrevious() {
     console.log("previous")
     //this is for muted audio
     // this.multimediaService.mutedAudio();
 
     this.multimediaService.previousSong();
-    
+
   }
-  SongNext(){
+
+  SongNext() {
     console.log("SONG NEXT MEDIA PLAYER");
     this.multimediaService.trackPrevious$.next("hola desde media player");
+  }
+
+
+// CONFIGURATION FOR VOLUME
+  changeVolume(event: any) {
+    console.log(event.value)
+    let value = event.value;
+    if (value == 0) {
+      this.stateVoume = 'mute'
+    } else {
+      this.stateVoume = 'sound'
+    }
+    const volume = value / 100;
+    this.multimediaService.changeVolume(volume);
+  }
+
+  changeStateVolume(stateVoume: string) {
+    if (stateVoume == 'mute') {
+      this.volume = 0;
+      const volumeSystem = this.volume / 100;
+      this.multimediaService.changeVolume(volumeSystem);
+      this.stateVoume = stateVoume
+    }
+    if (stateVoume == 'sound') {
+      this.volume = 65;
+      const volumeSystem = this.volume / 100;
+      this.multimediaService.changeVolume(volumeSystem);
+      this.stateVoume = stateVoume
+    }
   }
 }
