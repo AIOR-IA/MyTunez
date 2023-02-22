@@ -21,8 +21,6 @@ export class SectionGenericComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-      this.dataAlbum.forEach(res =>{
-        console.log("SECTION GENERIC IDARTIST =====>" , res );      
-      })
+    
   }
 }

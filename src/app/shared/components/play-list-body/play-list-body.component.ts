@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AlbumModel} from '@core/models/album.model';
 import {TrackModel} from '@core/models/tracks.model';
 import * as dataRaw from '../../../data/tracks.json';
@@ -6,27 +6,35 @@ import {MultimediaService} from '../../services/multimedia.service';
 import {SongModel} from '@core/models/song.model';
 import {MediaPlayerModel} from '@core/models/media-player.model';
 import {TrackService} from '@modules/tracks/services/track.service';
+import { BusinessLogicService } from '../../services/business-logic.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-play-list-body',
   templateUrl: './play-list-body.component.html',
   styleUrls: ['./play-list-body.component.scss']
 })
-export class PlayListBodyComponent implements OnInit {
+export class PlayListBodyComponent implements OnInit, OnDestroy  {
 
   @Input() nameArtist: string;
   @Input() dataSongs: SongModel[];
   @Input() dataAlbum: AlbumModel;
-
+  
+  listObservers$: Subscription[];
   listTracks: TrackModel[] = [];
   listMediaPlayer: MediaPlayerModel[] = [];
   optionSort: { property: string | null, order: string } = {property: null, order: 'asc'}
 
   indexSong: number = -1;
   indexAlbum: number;
+  SizeAlbum: number;
 
   constructor(private multimediaService: MultimediaService,
-              private trackService: TrackService) {
+              private trackService: TrackService,
+              private logicService: BusinessLogicService) {
+  }
+  ngOnDestroy(): void {
+    this.listObservers$.forEach(res => res.unsubscribe());
   }
 
   ngOnInit(): void {
@@ -40,20 +48,11 @@ export class PlayListBodyComponent implements OnInit {
 
     console.log("mediaPlayerSending", this.listMediaPlayer);
 
-    this.multimediaService.trackPrevious$.subscribe(res => {
-      // let dataInfo : MediaPlayerModel = {
-      //   nameSong :"test",
-      //   albumTitle: "album test",
-      //   albumCover: "https://i.scdn.co/image/ab67616d0000b27310c74bb7c32ff79db8dcb4d5",
-      //   urlSong: "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Songs%2FLuisFonsi%2FVida%2FLuis%20Fonsi%20No%20Me%20Doy%20Por%20Vencido.mp3?alt=media&token=e789e45c-1f29-459f-896c-3347674de200",
-      //   durationSong: "05:00",
-      //   yearSong : "2015",
-      //   nameArtist: "beto cuevas",
-      //   songUUID : "125"
-      // }
-      // console.log("CAPTURANDO EVENTO CLICK DESDE PLAY LIST BODY" , res);
-      // this.GetTrack(dataInfo);
+    this.multimediaService.songPrevious$.subscribe(res=>{
+      console.log("res ------" , res);
+      this.PreviosLogic();
     })
+   
 
     const observer1$ = this.trackService.dataFormSong$.subscribe((res: any) => {
       let newSongs: SongModel[] = res.filter((ress: any) => ress.albumUUID === this.dataAlbum.albumUUID);
@@ -69,7 +68,7 @@ export class PlayListBodyComponent implements OnInit {
         this.listMediaPlayer[this.indexSong].state =true;
       }
     })
-    
+    this.listObservers$ = [observer1$ , observer2$];
   }
 
   changeSort(property: string): void {
@@ -120,5 +119,36 @@ export class PlayListBodyComponent implements OnInit {
     this.listMediaPlayer.forEach(res => {
       res.state = false;
     })
+  }
+
+  PreviosLogic(){
+  //   let dataInfo : MediaPlayerModel = {
+      //   nameSong :"test",
+      //   albumTitle: "album test",
+      //   albumCover: "https://i.scdn.co/image/ab67616d0000b27310c74bb7c32ff79db8dcb4d5",
+      //   urlSong: "https://firebasestorage.googleapis.com/v0/b/mytunez-46394.appspot.com/o/Songs%2FLuisFonsi%2FVida%2FLuis%20Fonsi%20No%20Me%20Doy%20Por%20Vencido.mp3?alt=media&token=e789e45c-1f29-459f-896c-3347674de200",
+      //   durationSong: "05:00",
+      //   yearSong : "2015",
+      //   nameArtist: "beto cuevas",
+      //   songUUID : "125",
+      //   state: true
+      // }
+      // console.log("CAPTURANDO EVENTO CLICK DESDE PLAY LIST BODY" , res);
+      // this.GetTrack(dataInfo , 5);
+
+      let idArtistPrevious = this.dataAlbum.artistUUID;
+      let AlbumCollection = this.logicService.getAlbumsSongsByArtistUUID(idArtistPrevious);
+      this.SizeAlbum = AlbumCollection.length;
+      this.indexAlbum = AlbumCollection.findIndex(res => res.albumUUID === this.dataAlbum.albumUUID);
+      console.log("album collection", AlbumCollection);
+      console.log("album size", this.SizeAlbum);
+      console.log("album position", this.indexAlbum);
+      console.log("song position", this.indexSong);
+      if(this.indexAlbum ){
+        
+      }
+    }
+  GetIndexSongGlobal(){
+
   }
 }

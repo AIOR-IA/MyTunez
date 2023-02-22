@@ -16,10 +16,6 @@ export class MultimediaService {
   //Get Data infoSong
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
-  //Get Data infoSong
-  // subject
-  public trackPrevious$: BehaviorSubject<string> = new BehaviorSubject("hola");
-
   public songPrevious$ = new Subject<any>();
 
   //Get Data timeprogress song
@@ -154,7 +150,6 @@ export class MultimediaService {
 
 //  SONG PREVIOUS
   songPrevious(){
-    // let AllArtist: ArtistModel[] = this.logicService.artistCollection;
-    // this.dataFormArtist$.next(AllArtist);
+     this.songPrevious$.next("change previous song");
   }
 }

@@ -75,7 +75,6 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
   SongNext() {
     console.log("SONG NEXT MEDIA PLAYER");
-    this.multimediaService.trackPrevious$.next("hola desde media player");
   }
 
 
