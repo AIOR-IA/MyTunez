@@ -1,41 +1,41 @@
 <div class="play-list-body">
-    <ul class="play-list-table-header">
-        <li>❤</li>
-        <li (click)="changeSort('name')"><i class="uil uil-clock-eight">Name ❤</i></li>
-        <li (click)="changeSort('album')"><i class="uil uil-clock-eight">álbum 🆗</i></li>
-        <li><i class="uil uil-clock-eight">Year 🍌😁</i></li>
-        <li><i class="uil uil-clock-eight">Duration</i></li>
-    </ul>
-    <!-- <ul class="play-list-rows" *ngFor="let track of listTracks | orderList:optionSort.property:optionSort.order"></ul> -->
-    <ul class="play-list-rows" *ngFor="let track of listMediaPlayer ">
-        <li class="track-name-opacity ">
-            <button (click)="GetTrack(track) " class="play btn ">
-                     <i  class="fa-solid fa-circle-play "></i>
-             </button>
-        </li>
-        <li class="track-name ">
-            <ng-container *ngTemplateOutlet="coverSection;context:{track:track} "></ng-container>
-        </li>
-        <li class="track-name-opacity ">
-            {{track.albumTitle }}
-        </li>
-        <li class="track-name-opacity ">
-            {{track.songUUID}}
-        </li>
-        <li class="track-name-opacity ">
-            {{track.durationSong}}
-        </li>
-
-    </ul>
+  <ul class="play-list-table-header">
+    <li>❤</li>
+    <li (click)="changeSort('name')"><i class="uil uil-clock-eight">Name ❤</i></li>
+    <li (click)="changeSort('album')"><i class="uil uil-clock-eight">álbum 🆗</i></li>
+    <li><i class="uil uil-clock-eight">Year 🍌😁</i></li>
+    <li><i class="uil uil-clock-eight">Duration</i></li>
+  </ul>
+  <!-- <ul class="play-list-rows" *ngFor="let track of listTracks | orderList:optionSort.property:optionSort.order"></ul> -->
+  <ul class="play-list-rows" *ngFor="let track of listMediaPlayer ;let songIndex = index ">
+    <li class="track-name-opacity ">
+      <button (click)="GetTrack(track,songIndex) " class="">
+        <i *ngIf="track.state" class="fa-solid fa-circle-pause "></i>
+        <i *ngIf="track.state==false" class="fa-solid fa-circle-play "></i>
+      </button>
+    </li>
+    <li class="track-name ">
+      <ng-container *ngTemplateOutlet="coverSection;context:{track:track} "></ng-container>
+    </li>
+    <li class="track-name-opacity ">
+      {{track.albumTitle }}
+    </li>
+    <li class="track-name-opacity ">
+      {{track.songUUID}}
+    </li>
+    <li class="track-name-opacity ">
+      {{track.durationSong}}
+    </li>
+  </ul>
 </div>
 
 <!--template del cover-->
 <ng-template #coverSection let-track="track ">
-    <div class="cover-section ">
-        <img appImgBroken class="cover-track" [src]="dataAlbum.imageCover" [alt]="dataAlbum.title">
-        <div class="cover-info ">
-            <div class="name-track ">{{track.nameSong}}</div>
-            <div class="name-track-details ">{{track.nameArtist}}</div>
-        </div>
+  <div class="cover-section ">
+    <img appImgBroken class="cover-track" [src]="dataAlbum.imageCover" [alt]="dataAlbum.title">
+    <div class="cover-info ">
+      <div class="name-track ">{{track.nameSong}}</div>
+      <div class="name-track-details ">{{track.nameArtist}}</div>
     </div>
+  </div>
 </ng-template>
