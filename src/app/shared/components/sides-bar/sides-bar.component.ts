@@ -3,6 +3,7 @@ import {ArtistModel} from '@core/models/artist.model';
 import {BusinessLogicService} from '@shared/services/business-logic.service';
 import {MatDialog} from '@angular/material/dialog';
 import {RegistrationFormComponent} from "@shared/components/registration-form/registration-form.component";
+import { TrackService } from '@modules/tracks/services/track.service';
 
 @Component({
   selector: 'app-sides-bar',
@@ -19,10 +20,17 @@ export class SidesBarComponent implements OnInit {
   customOptions: Array<any> = []
   Artist: ArtistModel[] = [];
 
-  constructor(private logic: BusinessLogicService, public dialog: MatDialog) {
-    this.Artist = logic.artistCollection;
-    console.log(this.Artist[0].image);
+  private firstElement:ArtistModel ={
+    artistUUID: "All",
+    name: "All Artists",
+    genres: [],
+    members: "",
+    website: "",
+    image: ""
+}
 
+  constructor(private logic: BusinessLogicService, public dialog: MatDialog , private trackService: TrackService) {
+    this.Artist = logic.artistCollection;
   }
 
 
@@ -33,17 +41,6 @@ export class SidesBarComponent implements OnInit {
         icon: 'fa-house',
         router: ['/', 'auth']
       },
-      // {
-      //   name: 'Search',
-      //   icon: 'fa-magnifying-glass',
-      //   router: ['/', 'tracks']
-      // },
-      // {
-      //   name: 'Your Library',
-      //   icon: 'fa-book',
-      //   router: ['/', 'favorites'],
-      //   query: {hola: 'mundo'}
-      // }
     ]
 
     this.mainMenu.accessLink = [
@@ -57,7 +54,6 @@ export class SidesBarComponent implements OnInit {
       // }
     ]
 
-
     this.customOptions = [
       {
         name: 'ALL ARTISTS',
@@ -68,6 +64,15 @@ export class SidesBarComponent implements OnInit {
         router: ['/']
       },
     ]
+
+    this.customOptions = this.Artist; 
+    this.customOptions.unshift(this.firstElement);
+
+    const observer1$ =this.trackService.dataFormArtist$.subscribe(res=>{
+      this.customOptions = res;
+    })
+
+
   }
 
   addPopUpContext() {

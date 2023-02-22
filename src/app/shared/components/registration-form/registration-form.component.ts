@@ -10,6 +10,7 @@ import {YearModel} from "@core/models/year.model";
 import {AlbumModel} from "@core/models/album.model";
 
 import Swal from 'sweetalert2';
+import { TrackService } from '../../../modules/tracks/services/track.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -34,7 +35,8 @@ export class RegistrationFormComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RegistrationFormComponent>,
               private logic: BusinessLogicService,
-              private registrationLogic: RegistrationLogicService
+              private registrationLogic: RegistrationLogicService,
+              private trackService: TrackService
   ) {
   }
 
@@ -55,7 +57,7 @@ export class RegistrationFormComponent implements OnInit {
         genres: new FormControl(null, Validators.required),
         members: new FormControl(null, [Validators.required, this.validationBlankSpace()]),
         website: new FormControl(null, [Validators.required, this.validationBlankSpace()]),
-        image: new FormControl(null, [Validators.required, this.requiredFileType(["jpg", "png"])])
+        image: new FormControl(null, [Validators.required, this.requiredFileType(["jpg", "png", "jpeg"])])
 
       }
     );
@@ -71,7 +73,7 @@ export class RegistrationFormComponent implements OnInit {
         genre: new FormControl(null, Validators.required),
         year: new FormControl(null, [Validators.required, this.validationBlankSpace()]),
         artist: new FormControl(null, Validators.required),
-        imageCover: new FormControl(null, [Validators.required, this.requiredFileType(["jpg", "png"])])
+        imageCover: new FormControl(null, [Validators.required, this.requiredFileType(["jpg", "png", "jpeg"])])
       }
     );
   }
@@ -185,6 +187,7 @@ export class RegistrationFormComponent implements OnInit {
 
         this.registerArtistForm.reset()
         this.messagePopup("Artist was registered", "SUCCESSFUL");
+        this.trackService.updateDataArtist();
       });
     }
   }

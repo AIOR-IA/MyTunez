@@ -17,11 +17,12 @@ import { ArtistModel } from '../../../../core/models/artist.model';
 export class TracksPageComponent implements OnInit {
 
   mockTracksList:AlbumModel[]=[];
+
   dataArtist:ArtistModel;
   dataArtists:ArtistModel[];
   // TracksTrending:AlbumModel[] = [];
   // TracksRandom:AlbumModel[] = [];
-
+  TitleCard:string = "";
   listObservers$: Subscription[]=[]
   private UuidArtist : string;
   constructor(private capturateParam: ActivatedRoute, private logicService : BusinessLogicService , private trackService : TrackService) {
@@ -29,7 +30,7 @@ export class TracksPageComponent implements OnInit {
        this.UuidArtist=resp['idArtist'];
        this.loadData(this.UuidArtist,logicService.albumCollection);
        this.dataArtist = logicService.getArtistById(this.mockTracksList[0].artistUUID);
-       console.log("DATOS DATA ARTIST --> " , this.dataArtist)
+      
     });
    }
 
@@ -55,15 +56,11 @@ export class TracksPageComponent implements OnInit {
   loadData(UuidArtist:string , dataAlbums: AlbumModel[]){
     if(UuidArtist !== 'All'){
      this.mockTracksList = dataAlbums.filter((x:any) => x.artistUUID === UuidArtist);
+     const nameArtist:ArtistModel = this.logicService.getArtistById(UuidArtist);
+     this.TitleCard = `Artist Albums: ${nameArtist.name}`;
     }else{
      this.mockTracksList = dataAlbums;
+     this.TitleCard = "All Albums"
     }
   }
 }
-
- //  Swal.fire({
-      //    title: 'SUCCESS',
-      //    allowOutsideClick: false,
-      //    icon: 'success',
-      //    text: this.typeArtist 
- //  });

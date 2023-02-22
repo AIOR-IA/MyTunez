@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { TrackModel } from '@core/models/tracks.model';
 
 import * as dataRaw from '../../../data/tracks.json';
 import { AlbumModel } from '../../../core/models/album.model';
 import { BusinessLogicService } from '../../../shared/services/business-logic.service';
+import { ArtistModel } from '../../../core/models/artist.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +15,12 @@ export class TrackService {
 
   dataTracksRandom$: Observable<any> = of([]);
 
+  dataFormArtist$ = new Subject<any>();
   constructor(private logicService : BusinessLogicService) {
     //este envia directamente todos los albums 
     this.dataTracksTrending$ = of (logicService.albumCollection);
+
+    
 
     this.dataTracksRandom$ = new Observable((res)=>{
       
@@ -36,4 +40,10 @@ export class TrackService {
       }, 4000);
     })
    }
+
+   updateDataArtist(){
+    let AllArtist: ArtistModel[] = this.logicService.artistCollection;
+    this.dataFormArtist$.next(AllArtist);
+   }
+
 }

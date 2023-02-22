@@ -13,12 +13,16 @@ export class SectionGenericComponent implements OnInit {
   @Input() title: string ='';
   @Input() mode: 'small' |'big' = 'big';
   @Input() dataAlbum: AlbumModel[]=[];
+
+
   @Input() dataArtist: ArtistModel;
   @Input() dataArtists: ArtistModel[];
   
   constructor() { }
 
   ngOnInit(): void {
+      this.dataAlbum.forEach(res =>{
+        console.log("SECTION GENERIC IDARTIST =====>" , res );      
+      })
   }
-
 }

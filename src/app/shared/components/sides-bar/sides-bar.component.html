@@ -19,10 +19,16 @@
     </ul>
     <div class="sidebar__separator sidebar__separator--line"></div>
     <ul class="sidebar__list sidebar__list--three">
+
         <li [routerLink]="['/tracks', item.artistUUID]" *ngFor="let item of customOptions">
             <div class="sidebar__list__wrapper__item">
                 <span class="sidebar__list sidebar__list--label">{{item.name}}</span>
             </div>
         </li>
+        <div *ngIf="Artist.length === 1">
+            <div class="sidebar__list__wrapper__item">
+                <span class="sidebar__list sidebar__list--label">There are not artists</span>
+            </div>
+        </div>
     </ul>
 </div>
