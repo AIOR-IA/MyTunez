@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ArtistModel} from '@core/models/artist.model';
 import {BusinessLogicService} from '@shared/services/business-logic.service';
 import {MatDialog} from '@angular/material/dialog';
 import {RegistrationFormComponent} from "@shared/components/registration-form/registration-form.component";
 import { TrackService } from '@modules/tracks/services/track.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sides-bar',
   templateUrl: './sides-bar.component.html',
   styleUrls: ['./sides-bar.component.scss']
 })
-export class SidesBarComponent implements OnInit {
+export class SidesBarComponent implements OnInit, OnDestroy {
 
   mainMenu: {
     defaultOptions: Array<any>, accessLink: Array<any>
@@ -19,19 +20,18 @@ export class SidesBarComponent implements OnInit {
 
   customOptions: Array<any> = []
   Artist: ArtistModel[] = [];
+  listObservers$: Subscription[]=[]
 
-
-  constructor(private logic: BusinessLogicService, public dialog: MatDialog , private trackService: TrackService) {
-    this.Artist = logic.artistCollection;
+  constructor(private logicService: BusinessLogicService, public dialog: MatDialog , private trackService: TrackService) {
+    this.Artist = logicService.artistCollection;
   }
-
-
+  
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
       {
         name: 'Home',
         icon: 'fa-house',
-        router: ['/', 'auth']
+        router: ['/tracks', 'All']
       },
     ]
 
@@ -39,22 +39,7 @@ export class SidesBarComponent implements OnInit {
       {
         name: 'Create Artist',
         icon: 'fa-square-plus'
-      },
-      // {
-      //   name: 'Liked Songs',
-      //   icon: 'fa-hand-holding-heart'
-      // }
-    ]
-
-    this.customOptions = [
-      {
-        name: 'ALL ARTISTS',
-        router: ['/']
-      },
-      {
-        name: 'Pepe Aguilar',
-        router: ['/']
-      },
+      }
     ]
 
     this.customOptions = this.Artist; 
@@ -65,8 +50,10 @@ export class SidesBarComponent implements OnInit {
       this.customOptions = res;
       this.createArtistDefault();
     })
-
-
+    this.listObservers$ = [observer1$];
+  }
+  ngOnDestroy(): void {
+    this.listObservers$.forEach(res => res.unsubscribe());
   }
 
   addPopUpContext() {
@@ -76,7 +63,7 @@ export class SidesBarComponent implements OnInit {
   
   openDialog(): void {
     const dialogRef = this.dialog.open(RegistrationFormComponent, {
-      height: '770px',
+      height: '750px',
       width: '550px',
 
     });

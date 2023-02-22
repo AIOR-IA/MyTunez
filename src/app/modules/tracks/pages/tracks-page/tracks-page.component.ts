@@ -18,10 +18,8 @@ export class TracksPageComponent implements OnInit {
 
   mockTracksList:AlbumModel[]=[];
 
-  dataArtist:ArtistModel;
-  dataArtists:ArtistModel[];
-  // TracksTrending:AlbumModel[] = [];
-  // TracksRandom:AlbumModel[] = [];
+  
+
   TitleCard:string = "";
   listObservers$: Subscription[]=[]
   private UuidArtist : string;
@@ -29,28 +27,15 @@ export class TracksPageComponent implements OnInit {
     this.capturateParam.params.subscribe((resp) => {
        this.UuidArtist=resp['idArtist'];
        this.loadData(this.UuidArtist,logicService.albumCollection);
-       this.dataArtist = logicService.getArtistById(this.mockTracksList[0].artistUUID);
-      
+       console.log("ENTRO TRACK SERVICE");
     });
    }
 
   ngOnInit(): void {
-
-    // const observer1$ = this.trackService.dataTracksTrending$.subscribe(response =>{
-    //   console.log("Songs Trending -----> ", response)
-    //   this.TracksTrending = response;
-    // })
-
-    // const observer2$ = this.trackService.dataTracksRandom$.subscribe(response =>{
-    //   console.log("New Songs Random -----> ", response)
-    //   this.TracksRandom.push(response);
-    // })
-
-    // this.listObservers$ = [observer1$,observer2$]
-
     const observer1$ =this.trackService.dataFormAlbum$.subscribe(res=>{
       this.loadData(this.UuidArtist,res);
     })
+    this.listObservers$ = [observer1$];
   }
   
   ngOnDestroy(): void {
@@ -61,7 +46,11 @@ export class TracksPageComponent implements OnInit {
     if(UuidArtist !== 'All'){
      this.mockTracksList = dataAlbums.filter((x:any) => x.artistUUID === UuidArtist);
      const nameArtist:ArtistModel = this.logicService.getArtistById(UuidArtist);
-     this.TitleCard = `Artist Albums: ${nameArtist.name}`;
+     if(this.mockTracksList.length===0){
+      this.TitleCard = `No recorded albums were found for ${nameArtist.name}`;
+     }else{
+       this.TitleCard = `Artist Albums: ${nameArtist.name}`;
+     }
     }else{
      this.mockTracksList = dataAlbums;
      this.TitleCard = "All Albums"

@@ -3,7 +3,7 @@
         <li>❤</li>
         <li (click)="changeSort('name')"><i class="uil uil-clock-eight">Name ❤</i></li>
         <li (click)="changeSort('album')"><i class="uil uil-clock-eight">álbum 🆗</i></li>
-        <li><i class="uil uil-clock-eight">Year 🍌😁</i></li>
+        <li><i class="uil uil-clock-eight">Year 😁</i></li>
         <li><i class="uil uil-clock-eight">Duration</i></li>
     </ul>
     <!-- <ul class="play-list-rows" *ngFor="let track of listTracks | orderList:optionSort.property:optionSort.order"></ul> -->
@@ -21,7 +21,7 @@
             {{track.albumTitle }}
         </li>
         <li class="track-name-opacity ">
-            {{track.songUUID}}
+            {{track.yearSong}}
         </li>
         <li class="track-name-opacity ">
             {{track.durationSong}}

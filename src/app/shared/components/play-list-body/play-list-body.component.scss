@@ -25,7 +25,7 @@
     width: 100%;
     list-style: none;
     display: grid;
-    grid-template-columns: 0.2fr 3fr 2fr 2fr 1fr;
+    grid-template-columns: 0.3fr 3fr 2fr 2fr 1fr;
     margin: 0;
     padding: 1.2rem 0 0 0;
 }
@@ -57,8 +57,8 @@
 
 // HOVER LIST SONGS
 .track-name-status {
-    opacity: 0.4;
-    transition: opacity 500ms ease;
+    opacity: 0.1;
+    transition: opacity 200ms ease-in;
 }
 
 .track-name-status:hover {

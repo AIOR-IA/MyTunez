@@ -29,7 +29,6 @@ export class FileUploadComponent implements ControlValueAccessor {
   }
 
   writeValue( value: null ) {
-    // clear file input
     this.host.nativeElement.value = '';
     this.file = null;
   }

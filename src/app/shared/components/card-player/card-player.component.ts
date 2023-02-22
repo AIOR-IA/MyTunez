@@ -13,19 +13,8 @@ export class CardPlayerComponent implements OnInit {
 
   @Input() mode: 'small' |'big' = 'small';
   @Input() track:AlbumModel;
-  @Input() dataArtist: ArtistModel;
-  constructor(private multimediaService: MultimediaService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-  // sendPlay(track:TrackModel){
-  //   console.log("sending track to media Player", track);
-  //   this.multimediaService.callback.emit(track);
-  // }
-  sendPlay(track:AlbumModel):void {
-    console.log("sending track to media Player", track);
-    // this.multimediaService.trackInfo$.next(track);
-  }
-
 }

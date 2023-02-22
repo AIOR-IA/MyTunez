@@ -47,47 +47,36 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const {data}: any = (dataRaw as any).default
     this.listTracks = data;
-    console.log("PLAYLISTBODY-NAME ARTIST", this.nameArtist);
-    console.log("PLAYLISTBODY-NAME DATA SONGS", this.dataSongs);
-    console.log("PLAYLISTBODY-NAME DATAALBUM", this.dataAlbum);
-
     this.loadDataSongs();
 
-    console.log("mediaPlayerSending", this.listMediaPlayer);
 
     // PREVIOUS AND NEXT SONG
     this.multimediaService.songPrevious$.subscribe(res => {
-      console.log("res ------", res);
       this.PreviosLogic();
     })
 
     this.multimediaService.songNext$.subscribe(res => {
-      console.log("SUBSCRIBE OF SONG NEXT", res);
       this.nextLogic();
     })
 
     // PREVIOUS AND NEXT SONG SUFFLE
     this.multimediaService.songPreviousSuffle$.subscribe(res => {
-      console.log("songPreviousSuffle$  " + res);
       this.previosSuffleLogic();
     })
 
     this.multimediaService.songNextSuffle$.subscribe(res => {
-      console.log("songNextSuffle$  " + res);
       this.nextSuffleLogic();
     })
 
     // ON OR OFF SUFFLE
     this.multimediaService.stateSuffle$.subscribe(response => {
-      console.log("stateSuffle$ =  " + response);
       if (response === "on") {
           this.generatePositionRandom()
       } else {
-        console.log("ESTA APAGO EL SUFFLE")
+
       }
 
     })
-
 
     const observer1$ = this.trackService.dataFormSong$.subscribe((res: any) => {
       let newSongs: SongModel[] = res.filter((ress: any) => ress.albumUUID === this.dataAlbum.albumUUID);
@@ -165,11 +154,7 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     this.SizeAlbum = AlbumCollection.length;
     this.indexAlbum = AlbumCollection.findIndex(res => res.albumUUID === this.dataAlbum.albumUUID);
     this.sizeSongs = songCollection.length;
-    console.log("album collection", AlbumCollection);
-    console.log("album size", this.SizeAlbum);
-    console.log("album position", this.indexAlbum);
-    console.log("song position", this.indexSong);
-    console.log("songs size", this.sizeSongs);
+
 
     // VALIDATION PREVIOUS
     if (this.indexSong == 0) {
@@ -182,7 +167,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   }
 
   nextLogic() {
-    console.warn("NEXT LOGIC")
     let idArtistPrevious = this.dataAlbum.artistUUID;
     let AlbumCollection = this.logicService.getAlbumsSongsByArtistUUID(idArtistPrevious);
     let songCollection = this.logicService.getSongs(this.dataAlbum.albumUUID);
@@ -190,11 +174,7 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     this.SizeAlbum = AlbumCollection.length;
     this.indexAlbum = AlbumCollection.findIndex(res => res.albumUUID === this.dataAlbum.albumUUID);
     this.sizeSongs = songCollection.length;
-    console.log("album collection", AlbumCollection);
-    console.log("album size", this.SizeAlbum);
-    console.log("album position", this.indexAlbum);
-    console.log("song position", this.indexSong);
-    console.log("songs size", this.sizeSongs);
+
 
 
     if (this.indexSong == (this.sizeSongs - 1)) {
@@ -209,21 +189,11 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   changeSong() {
     this.resetStateSong()
     this.listMediaPlayer[this.indexSong].state = true;
-    console.warn("INDEX SONG")
-    console.log(this.indexSong)
-    console.warn("ENVIANDO");
-    console.log(this.listMediaPlayer[this.indexSong])
-    console.warn("---------------");
+ 
     this.multimediaService.trackInfo$.next(this.listMediaPlayer[this.indexSong]);
-
   }
 
   previosSuffleLogic() {
-    console.log("ATRAS SUFFLE")
-    console.warn("AUXILIO 1")
-    console.log(this.indexSong)
-    console.log(this.countSuffle)
-    console.warn("---------------")
 
     if (this.countSuffle== 0) {
       this.countSuffle = this.arraySuffle.length - 1
@@ -234,20 +204,10 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
       this.indexSong = this.arraySuffle[this.countSuffle];
       this.changeSong()
     }
-
-    console.log("ATRAS SUFFLE")
-    console.warn("AUXILIO 1")
-    console.log(this.indexSong)
-    console.log(this.countSuffle)
-    console.warn("---------------")
-
-
   }
 
 
   nextSuffleLogic() {
-    console.log("SIGUIENTE SUFFLE")
-
     if (this.countSuffle== (this.arraySuffle.length - 1)) {
       this.countSuffle = 0
       this.indexSong = this.arraySuffle[this.countSuffle];
@@ -268,29 +228,18 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     })
 
     this.arraySuffle = this.shuffleArray(this.arraySuffle, this.indexSong);
-    console.warn("ARRAY SUFFLE")
-    console.log(this.arraySuffle)
+    console.log(this.arraySuffle);
   }
 
   shuffleArray(arr: number[], index: number): number[] {
-    // Seleccionar el valor en el índice especificado
     const selectedValue = arr[index];
-    // Eliminar el valor seleccionado del arreglo
     arr.splice(index, 1);
-    // Barajar los valores restantes de manera aleatoria
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    // Agregar el valor seleccionado al inicio del arreglo
     arr.unshift(selectedValue);
-    // Devolver el arreglo resultante
     return arr;
   }
 }
 
-
-// // Ejemplo de uso
-// const arr = [0, 1, 2, 3, 4, 5, 6];
-// const shuffledArr = shuffleArray(arr, 2);
-// console.log(shuffledArr); // Ejemplo de salida: [2, 3, 1, 0, 5, 4, 6]

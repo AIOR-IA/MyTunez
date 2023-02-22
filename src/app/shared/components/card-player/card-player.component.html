@@ -1,33 +1,14 @@
-<!-- Diseño del mode (small)-->
-<div *ngIf="mode==='small'" class="card-player player-small">
-    <img [src]="track?.imageCover" [alt]="track?.title" class="cover">
-    <div class="content-player">
-        {{track?.title}}
-    </div>
-    <div class="buttons-player">
-        <button *ngIf="true" class="play-btn">
-            <i class="uil " [ngClass]="{'fa-sharp fa-solid fa-play':true}"></i>
-        </button>
-        <button *ngIf="false" class="play-btn">
-            <i class="uil fa-sharp fa-solid fa-play"></i>
-        </button>
-    </div>
-</div>
-
 <!-- Diseño del mode (big)-->
-<div *ngIf="mode==='big'" class="card-player player-big">
+<div *ngIf="mode==='big'" class="cardPlayer cardPlayer--big">
 
-    <img [src]="track.imageCover" alt="" class="cover">
-    <div class="content-player">
+    <img [src]="track.imageCover" alt="" class="cardPlayer__cover">
+    <div class="cardPlayer__contentPlayer">
         <div class="title-track">{{track.title}}</div>
-        <!-- <div class="sub-title-track">{{track.title}}</div> -->
     </div>
-    <div class="buttons-player">
-        <button [routerLink]="['/favorites', track.artistUUID,track.albumUUID]" *ngIf="true" class="play-btn">
-            <i class="uil " [ngClass]="{'fa-solid fa-up-right-from-square':true}"></i>
+    <div class="cardPlayer__buttonsPlayer">
+        <button [routerLink]="['/favorites', track.artistUUID,track.albumUUID]" *ngIf="true" class="cardPlayer__buttonsPlayer--btn">
+            <i  [ngClass]="{'fa-solid fa-up-right-from-square':true}"></i>
         </button>
-        <button *ngIf="false" class="play-btn">
-            <i class="fa-sharp fa-solid fa-play"></i>
-        </button>
+
     </div>
 </div>

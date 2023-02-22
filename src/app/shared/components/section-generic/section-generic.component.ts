@@ -15,12 +15,9 @@ export class SectionGenericComponent implements OnInit {
   @Input() dataAlbum: AlbumModel[]=[];
 
 
-  @Input() dataArtist: ArtistModel;
-  @Input() dataArtists: ArtistModel[];
   
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 }

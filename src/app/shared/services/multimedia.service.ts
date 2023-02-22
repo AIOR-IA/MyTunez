@@ -22,13 +22,13 @@ export class MultimediaService {
   public songNext$ = new Subject<any>();
   public songNextSuffle$ = new Subject<any>();
   public stateSuffle$ = new Subject<any>();
-  //Get Data timeprogress song
+  //Get Data timeElapsedProgress song
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject("00:00");
 
   //Get Data timeRemaining song
   public timeRemaining$: BehaviorSubject<string> = new BehaviorSubject("-00:00");
 
-  //Get Data timeRemaining song
+  //Get Data StatusSong song
   public playerStatusSong$: BehaviorSubject<string> = new BehaviorSubject("paused");
 
   //Get timeNow song for progressbar
@@ -38,7 +38,6 @@ export class MultimediaService {
     this.audio = new Audio();
     this.trackInfo$.subscribe(responseInfoAudio => {
       if (responseInfoAudio) {
-        // console.log("multimediaService ---> : ", responseInfoAudio);
         this.setAudio(responseInfoAudio)
       }
     })
@@ -48,13 +47,11 @@ export class MultimediaService {
 
   //PLAY SONG
   public setAudio(track: MediaPlayerModel): void {
-    // console.log("SetAUDIO --->",track);
     this.audio.src = track.urlSong;
     this.audio.play();
   }
 
   private listenAllEvents(): void {
-
     this.audio.addEventListener('timeupdate', this.calculateTime, false);
     this.audio.addEventListener('playing', this.setPlayerStatus, false);
     this.audio.addEventListener('play', this.setPlayerStatus, false);
@@ -63,9 +60,7 @@ export class MultimediaService {
   }
 
   private calculateTime = () => {
-    //  console.log('Disparando Evento');
     const {duration, currentTime} = this.audio;
-    //  console.table([duration,currentTime]);
     this.setTimeElapsed(currentTime);
     this.setTimeRemaining(currentTime, duration);
     this.setPercentage(currentTime, duration);
@@ -73,7 +68,6 @@ export class MultimediaService {
 
   // states play playing pause ended
   private setPlayerStatus = (state: any) => {
-    console.log("status player ready --> ", state);
     switch (state.type) {
       case 'play':
         this.playerStatusSong$.next('play')
@@ -143,7 +137,6 @@ export class MultimediaService {
     } else {
       this.songPrevious();
     }
-    console.log(currentTime)
   }
 
   // CONFIGURATION FOR VOLUME
@@ -168,7 +161,6 @@ export class MultimediaService {
     } else {
       this.songPreviousSuffle$.next("change previous suffle song");
     }
-    console.log(currentTime)
   }
 
   //  SONG NEXT

@@ -61,10 +61,7 @@ export class RegistrationFormComponent implements OnInit {
 
       }
     );
-
     console.log(this.artistForm)
-
-
   }
 
   loadAlbumForm() {
@@ -162,7 +159,6 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   getAlbumsFromArtist(artistUUID: string) {
-    console.warn("CAPTURANDO ")
     this.registerSongForm.get("album")?.reset()
 
     this.albums = this.logic.getAlbums(artistUUID);

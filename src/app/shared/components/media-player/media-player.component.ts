@@ -36,17 +36,8 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    // const observeSong$:Subscription = this.multimediaService.callback.subscribe((
-    //   response =>{
-    //     console.log('listening song from mediaplayer component', response);
-    //   }
-    // ))
-    // this.multimediaService.trackInfo$.subscribe(res =>{
-    //    this.mockCover=res;
-    //   console.log("se tiene que reproducir la cancion que se reciba aqui", res);
-    // })
+    
     const observerStatus$ = this.multimediaService.playerStatusSong$.subscribe(status => {
-      console.log("statussss ", status);
       this.statePlayer = status;
     })
     this.listObservers$ = [observerStatus$];
@@ -68,12 +59,10 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
     const {x, width} = ElementNative.getBoundingClientRect();
     const positionX = clientX - x;
     const percentageFromX = (positionX * 100) / width;
-    // console.log(`Position(x): ${percentageFromX}`);
     this.multimediaService.SeekAndPlay(percentageFromX);
   }
 
   SongPrevious() {
-    console.log("SONG PREVIOUS MEDIA PLAYER")
     if (this.stateShuffle == 'on') {
       this.multimediaService.previousSongSuffle();
     } else {
@@ -85,7 +74,6 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
     if (this.stateShuffle == 'on') {
       this.multimediaService.songNextSuffle();
     } else {
-      console.log("SONG NEXT MEDIA PLAYER");
       this.multimediaService.songNext();
     }
   }
@@ -115,16 +103,12 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   }
 
   setVolumeSytem(volume: number) {
-    console.warn("CURRENT VOLUME")
-    console.log(volume)
     const volumeSystem = volume / 100;
     this.multimediaService.changeVolume(volumeSystem);
   }
 
   changeStateShuffle(state: string) {
     this.stateShuffle = state
-    console.warn("SHUFFLE")
-    console.log(this.stateShuffle)
     this.multimediaService.changeStateShuffle(state);
   }
 }

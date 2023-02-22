@@ -1,11 +1,10 @@
-<div class="section--generic">
-    <h1 class="section--generic__title">{{title}}</h1>
+<div class="sectionGeneric">
+    <h1 class="sectionGeneric__title">{{title}}</h1>
 
-    <div class="section--generic__player--zone">
-        <ul class="player--list" [ngClass]="{'card-small':mode === 'small','card-big':mode === 'big'}">
+    <div class="sectionGeneric__player--zone">
+        <ul class="sectionGeneric__player--list" [ngClass]="{'card--small':mode === 'small','card--big':mode === 'big'}">
             <li *ngFor="let info of dataAlbum; let indice=index">
-
-                <app-card-player [dataArtist]="dataArtist" [mode]="mode" [track]="info"></app-card-player>
+                <app-card-player [mode]="mode" [track]="info"></app-card-player>
             </li>
         </ul>
     </div>
