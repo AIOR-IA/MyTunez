@@ -22,7 +22,7 @@ export class PlayListBodyComponent implements OnInit {
   listMediaPlayer: MediaPlayerModel[] = [];
   optionSort: { property: string | null, order: string } = {property: null, order: 'asc'}
 
-  indexSong: number;
+  indexSong: number = -1;
   indexAlbum: number;
 
   constructor(private multimediaService: MultimediaService,
@@ -62,6 +62,14 @@ export class PlayListBodyComponent implements OnInit {
       this.loadDataSongs();
 
     })
+    const observer2$ = this.trackService.statusSong$.subscribe((res: any) => {
+      if(this.listMediaPlayer[this.indexSong].state){
+        this.listMediaPlayer[this.indexSong].state =false;
+      }else{
+        this.listMediaPlayer[this.indexSong].state =true;
+      }
+    })
+    
   }
 
   changeSort(property: string): void {
@@ -73,18 +81,20 @@ export class PlayListBodyComponent implements OnInit {
   }
 
   GetTrack(track: MediaPlayerModel, songIndex: any) {
-    console.warn("GET TRACK INDEX")
-    console.log(songIndex)
-    this.indexSong = songIndex;
-    console.warn("GET TRACK TRACK")
-    console.log(track);
-
-    console.warn("CHANGE STATE OF TRACK STOP TO PLAY")
-    this.resetStateSong()
-    this.listMediaPlayer[songIndex].state = true;
-    console.log(this.listMediaPlayer);
-
-    this.multimediaService.trackInfo$.next(track);
+  
+    if(songIndex=== this.indexSong){
+      if(this.listMediaPlayer[songIndex].state){
+        this.listMediaPlayer[songIndex].state =false;
+      }else{
+        this.listMediaPlayer[songIndex].state =true;
+      }
+      this.multimediaService.togglePlayerStatus();
+    }else{
+      this.indexSong = songIndex;  
+      this.resetStateSong()
+      this.listMediaPlayer[songIndex].state = true;
+      this.multimediaService.trackInfo$.next(track);
+    }
   }
 
   loadDataSongs() {

@@ -2,6 +2,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {Subscription} from 'rxjs';
 import {TrackModel} from '../../../core/models/tracks.model';
 import {MultimediaService} from '../../services/multimedia.service';
+import { TrackService } from '../../../modules/tracks/services/track.service';
 
 @Component({
   selector: 'app-media-player',
@@ -25,7 +26,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   volume = 20;
   stateVoume = "sound";
 
-  constructor(public multimediaService: MultimediaService) {
+  constructor(public multimediaService: MultimediaService , private trackService: TrackService) {
     this.multimediaService.changeVolume(this.volume / 100);
   }
 
@@ -54,6 +55,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
   public changeStatePlayer(): void {
     this.multimediaService.togglePlayerStatus();
+    this.trackService.statusSong$.next("change State List Song");
   }
 
   mousePosition(event: MouseEvent) {

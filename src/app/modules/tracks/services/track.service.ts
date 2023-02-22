@@ -21,6 +21,8 @@ export class TrackService {
   dataFormAlbum$ = new Subject<any>();
 
   dataFormSong$ = new Subject<any>();
+
+  statusSong$ = new Subject<any>();
   constructor(private logicService : BusinessLogicService) {
     //este envia directamente todos los albums 
     this.dataTracksTrending$ = of (logicService.albumCollection);

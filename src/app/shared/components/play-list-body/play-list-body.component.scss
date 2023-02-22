@@ -56,4 +56,11 @@
 }
 
 // HOVER LIST SONGS
+.track-name-status {
+    opacity: 0.4;
+    transition: opacity 500ms ease;
+}
 
+.track-name-status:hover {
+    opacity: 1;
+}
