@@ -68,14 +68,13 @@
     <!--            <i class="fa-solid fa-walkie-talkie"></i>-->
     <!--        </button>-->
 
-
     <button *ngIf="stateVoume == 'mute'" class="btn-media" (click)="changeStateVolume('sound')">
       <i class="fa-solid fa-volume-xmark"></i>
     </button>
     <button *ngIf="stateVoume == 'sound'" class="btn-media" (click)="changeStateVolume('mute')">
       <i class="fa-solid fa-volume-high"></i>
     </button>
-    <mat-slider class="example-margin" [(ngModel)]="volume" (change)="changeVolume($event)"></mat-slider>
+    <mat-slider class="example-margin" [(ngModel)]="volume" (change)="changeSliderVolume($event)"></mat-slider>
 
   </div>
 </ng-template>

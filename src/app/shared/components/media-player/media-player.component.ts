@@ -82,30 +82,32 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
 
 // CONFIGURATION FOR VOLUME
-  changeVolume(event: any) {
-    console.log(event.value)
-    let value = event.value;
-    if (value == 0) {
+  changeSliderVolume(event: any) {
+
+    let volumeSlider = event.value;
+    if (volumeSlider == 0) {
       this.stateVoume = 'mute'
     } else {
       this.stateVoume = 'sound'
     }
-    const volume = value / 100;
-    this.multimediaService.changeVolume(volume);
+    this.setVolumeSytem(volumeSlider)
   }
 
   changeStateVolume(stateVoume: string) {
     if (stateVoume == 'mute') {
       this.volume = 0;
-      const volumeSystem = this.volume / 100;
-      this.multimediaService.changeVolume(volumeSystem);
-      this.stateVoume = stateVoume
     }
     if (stateVoume == 'sound') {
       this.volume = 65;
-      const volumeSystem = this.volume / 100;
-      this.multimediaService.changeVolume(volumeSystem);
-      this.stateVoume = stateVoume
     }
+    this.stateVoume = stateVoume
+    this.setVolumeSytem(this.volume)
+  }
+
+  setVolumeSytem(volume: number) {
+    console.warn("CURRENT VOLUME")
+    console.log(volume)
+    const volumeSystem = volume / 100;
+    this.multimediaService.changeVolume(volumeSystem);
   }
 }
