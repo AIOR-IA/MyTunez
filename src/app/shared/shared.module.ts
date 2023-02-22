@@ -23,6 +23,7 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatGridListModule} from "@angular/material/grid-list";
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSliderModule} from "@angular/material/slider";
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         ReactiveFormsModule,
         MatDividerModule,
         MatGridListModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatSliderModule
     ],
   exports: [
     SidesBarComponent,

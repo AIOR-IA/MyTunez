@@ -1,74 +1,80 @@
 <div class="media-player">
-    <div class="media-player--wrapper ">
-        <!--Zona del artista-->
-        <div class="artist player-center">
-            <ng-container *ngTemplateOutlet="artistZone"></ng-container>
-        </div>
-        <!--Zona del reproductor-->
-        <div class="player-controls player-center">
-            <ng-container *ngTemplateOutlet="playerZone"></ng-container>
-        </div>
-        <!--Zona del controles adicionales-->
-        <div class="player-audio player-center">
-            <ng-container *ngTemplateOutlet="playerAudio"></ng-container>
-        </div>
+  <div class="media-player--wrapper ">
+    <!--Zona del artista-->
+    <div class="artist player-center">
+      <ng-container *ngTemplateOutlet="artistZone"></ng-container>
     </div>
+    <!--Zona del reproductor-->
+    <div class="player-controls player-center">
+      <ng-container *ngTemplateOutlet="playerZone"></ng-container>
+    </div>
+    <!--Zona del controles adicionales-->
+    <div class="player-audio player-center">
+      <ng-container *ngTemplateOutlet="playerAudio"></ng-container>
+    </div>
+  </div>
 </div>
 
 <!-- ZONE TEMPLATES -->
 
 <ng-template #artistZone>
-    <div class="artist-inside" *ngIf="multimediaService.trackInfo$ | async as mockCover">
+  <div class="artist-inside" *ngIf="multimediaService.trackInfo$ | async as mockCover">
 
-        <img [src]="mockCover.albumCover" alt="" class="cover">
-        <div class="track-info">
-            <h3 class="track-title">{{mockCover.nameSong}}</h3>
-            <h5 class="track-title sub-title">{{mockCover.nameArtist}}</h5>
-        </div>
-        <div class="track-like">
-            <button class="btn-like">
-                <i class="fa-regular fa-heart"></i>
-            </button>
-        </div>
+    <img [src]="mockCover.albumCover" alt="" class="cover">
+    <div class="track-info">
+      <h3 class="track-title">{{mockCover.nameSong}}</h3>
+      <h5 class="track-title sub-title">{{mockCover.nameArtist}}</h5>
     </div>
+    <div class="track-like">
+      <button class="btn-like">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #playerZone>
-    <div class="player-controls-inside">
-        <div class="buttons-media">
-            <button (click)="SongPrevious()" class="arrow btn">
-                <i class="fa-solid fa-backward-step"></i>
-            </button>
-            <button (click)="changeStatePlayer()" class="play btn">
-                <i *ngIf="statePlayer === 'paused' || statePlayer ==='ended' " class="fa-solid fa-circle-play"></i>
-                <i *ngIf="statePlayer !== 'paused' && statePlayer !=='ended' "class="fa-solid fa-circle-pause"></i>
-            </button>
-            <button (click)="SongNext()" class="arrow btn">
-                <i class="fa-solid fa-forward-step"></i>
-            </button>
-        </div>
-        <div class="media-linetime">
+  <div class="player-controls-inside">
+    <div class="buttons-media">
+      <button (click)="SongPrevious()" class="arrow btn">
+        <i class="fa-solid fa-backward-step"></i>
+      </button>
+      <button (click)="changeStatePlayer()" class="play btn">
+        <i *ngIf="statePlayer === 'paused' || statePlayer ==='ended' " class="fa-solid fa-circle-play"></i>
+        <i *ngIf="statePlayer !== 'paused' && statePlayer !=='ended' " class="fa-solid fa-circle-pause"></i>
+      </button>
+      <button (click)="SongNext()" class="arrow btn">
+        <i class="fa-solid fa-forward-step"></i>
+      </button>
+    </div>
+    <div class="media-linetime">
 
-            <div class="time">{{multimediaService.timeElapsed$ | async}}</div>
-            <span #progressBar (click)="mousePosition($event)" class="time-progress">
+      <div class="time">{{multimediaService.timeElapsed$ | async}}</div>
+      <span #progressBar (click)="mousePosition($event)" class="time-progress">
                 <span class="time-progress-live" [style.width]="(multimediaService.playerPercentage$ | async )+'%'">
                 </span>
             </span>
-            <div class="time">{{multimediaService.timeRemaining$ | async}}</div>
-        </div>
+      <div class="time">{{multimediaService.timeRemaining$ | async}}</div>
     </div>
+  </div>
 </ng-template>
 
 <ng-template #playerAudio>
-    <div class="player-audio-inside">
-        <button class="btn-media">
-            <i class="fa-solid fa-sliders"></i>
-        </button>
-        <button class="btn-media">
-            <i class="fa-solid fa-walkie-talkie"></i>
-        </button>
-        <button class="btn-media">
-            <i class="fa-solid fa-volume-off"></i>
-        </button>
-    </div>
+  <div class="player-audio-inside">
+    <!--        <button class="btn-media">-->
+    <!--            <i class="fa-solid fa-sliders"></i>-->
+    <!--        </button>-->
+    <!--        <button class="btn-media">-->
+    <!--            <i class="fa-solid fa-walkie-talkie"></i>-->
+    <!--        </button>-->
+
+    <button *ngIf="stateVoume == 'mute'" class="btn-media" (click)="changeStateVolume('sound')">
+      <i class="fa-solid fa-volume-xmark"></i>
+    </button>
+    <button *ngIf="stateVoume == 'sound'" class="btn-media" (click)="changeStateVolume('mute')">
+      <i class="fa-solid fa-volume-high"></i>
+    </button>
+    <mat-slider class="example-margin" [(ngModel)]="volume" (change)="changeSliderVolume($event)"></mat-slider>
+
+  </div>
 </ng-template>
