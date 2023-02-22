@@ -47,6 +47,10 @@ export class TracksPageComponent implements OnInit {
     // })
 
     // this.listObservers$ = [observer1$,observer2$]
+
+    const observer1$ =this.trackService.dataFormAlbum$.subscribe(res=>{
+      this.loadData(this.UuidArtist,res);
+    })
   }
   
   ngOnDestroy(): void {

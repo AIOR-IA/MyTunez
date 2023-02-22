@@ -197,10 +197,10 @@ export class RegistrationFormComponent implements OnInit {
     if (!this.registerAlbumForm.invalid) {
       this.showSpinner("album")
       this.registrationLogic.registerAlbum(this.albumForm).then((res) => {
-        this.hideSpinner("album")
-        this.registerAlbumForm.reset()
+        this.hideSpinner("album");
+        this.registerAlbumForm.reset();
         this.messagePopup("Album was registered", "SUCCESSFUL");
-
+        this.trackService.updateDataAlbum();
       });
     }
   }
@@ -215,7 +215,7 @@ export class RegistrationFormComponent implements OnInit {
         this.hideSpinner("song")
         this.registerSongForm.reset()
         this.messagePopup("Song was registered", "SUCCESSFUL");
-
+        this.trackService.updateDataSong();
       });
     }
   }
