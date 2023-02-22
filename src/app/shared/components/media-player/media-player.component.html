@@ -61,12 +61,15 @@
 
 <ng-template #playerAudio>
   <div class="player-audio-inside">
-    <!--        <button class="btn-media">-->
-    <!--            <i class="fa-solid fa-sliders"></i>-->
-    <!--        </button>-->
-    <!--        <button class="btn-media">-->
-    <!--            <i class="fa-solid fa-walkie-talkie"></i>-->
-    <!--        </button>-->
+
+    <button *ngIf="stateShuffle == 'on'" class="btn-media" (click)="changeStateShuffle('off')">
+      <i class="fa-solid fa-shuffle shuffleOn"></i>
+    </button>
+
+    <button *ngIf="stateShuffle == 'off'" class="btn-media" (click)="changeStateShuffle('on')">
+      <i class="fa-solid fa-shuffle"></i>
+    </button>
+
 
     <button *ngIf="stateVoume == 'mute'" class="btn-media" (click)="changeStateVolume('sound')">
       <i class="fa-solid fa-volume-xmark"></i>

@@ -17,7 +17,11 @@ export class MultimediaService {
   public trackInfo$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   public songPrevious$ = new Subject<any>();
+  public songPreviousSuffle$ = new Subject<any>();
 
+  public songNext$ = new Subject<any>();
+  public songNextSuffle$ = new Subject<any>();
+  public stateSuffle$ = new Subject<any>();
   //Get Data timeprogress song
   public timeElapsed$: BehaviorSubject<string> = new BehaviorSubject("00:00");
 
@@ -136,8 +140,7 @@ export class MultimediaService {
     const {currentTime} = this.audio;
     if (currentTime <= 10) {
       this.audio.currentTime = 0;
-    }
-    else {
+    } else {
       this.songPrevious();
     }
     console.log(currentTime)
@@ -149,7 +152,32 @@ export class MultimediaService {
   }
 
 //  SONG PREVIOUS
-  songPrevious(){
-     this.songPrevious$.next("change previous song");
+  songPrevious() {
+    this.songPrevious$.next("change previous song");
+  }
+
+  //  SONG NEXT
+  songNext() {
+    this.songNext$.next("change next song");
+  }
+
+  previousSongSuffle() {
+    const {currentTime} = this.audio;
+    if (currentTime <= 10) {
+      this.audio.currentTime = 0;
+    } else {
+      this.songPreviousSuffle$.next("change previous suffle song");
+    }
+    console.log(currentTime)
+  }
+
+  //  SONG NEXT
+  songNextSuffle() {
+    this.songNextSuffle$.next("change next suffle song");
+  }
+
+  // ON AND OFF SUFFLE
+  changeStateShuffle(state: string) {
+    this.stateSuffle$.next(state);
   }
 }

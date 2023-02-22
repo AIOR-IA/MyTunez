@@ -2,7 +2,7 @@ import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core
 import {Subscription} from 'rxjs';
 import {TrackModel} from '../../../core/models/tracks.model';
 import {MultimediaService} from '../../services/multimedia.service';
-import { TrackService } from '../../../modules/tracks/services/track.service';
+import {TrackService} from '../../../modules/tracks/services/track.service';
 
 @Component({
   selector: 'app-media-player',
@@ -23,10 +23,14 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   listObservers$: Subscription[];
   statePlayer: string = 'paused';
 
-  volume = 20;
+  // volume default
+  volume = 5;
   stateVoume = "sound";
 
-  constructor(public multimediaService: MultimediaService , private trackService: TrackService) {
+  //Shuffle
+  stateShuffle = "off";
+
+  constructor(public multimediaService: MultimediaService, private trackService: TrackService) {
     this.multimediaService.changeVolume(this.volume / 100);
   }
 
@@ -69,12 +73,21 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   }
 
   SongPrevious() {
-    console.log("previous")
-    this.multimediaService.previousSong();
+    console.log("SONG PREVIOUS MEDIA PLAYER")
+    if (this.stateShuffle == 'on') {
+      this.multimediaService.previousSongSuffle();
+    } else {
+      this.multimediaService.previousSong();
+    }
   }
 
   SongNext() {
-    console.log("SONG NEXT MEDIA PLAYER");
+    if (this.stateShuffle == 'on') {
+      this.multimediaService.songNextSuffle();
+    } else {
+      console.log("SONG NEXT MEDIA PLAYER");
+      this.multimediaService.songNext();
+    }
   }
 
 
@@ -106,5 +119,12 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
     console.log(volume)
     const volumeSystem = volume / 100;
     this.multimediaService.changeVolume(volumeSystem);
+  }
+
+  changeStateShuffle(state: string) {
+    this.stateShuffle = state
+    console.warn("SHUFFLE")
+    console.log(this.stateShuffle)
+    this.multimediaService.changeStateShuffle(state);
   }
 }
