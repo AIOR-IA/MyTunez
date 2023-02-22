@@ -7,4 +7,5 @@ export interface MediaPlayerModel {
     yearSong:string;
     nameArtist:string;
     songUUID: string;
+    state:boolean;
 }

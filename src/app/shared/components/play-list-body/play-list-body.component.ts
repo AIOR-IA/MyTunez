@@ -6,6 +6,7 @@ import { MultimediaService } from '../../services/multimedia.service';
 import { SongModel } from '../../../core/models/song.model';
 import { MediaPlayerModel } from '../../../core/models/media-player.model';
 import { TrackService } from '@modules/tracks/services/track.service';
+import { state } from '@angular/animations';
 @Component({
   selector: 'app-play-list-body',
   templateUrl: './play-list-body.component.html',
@@ -81,7 +82,8 @@ export class PlayListBodyComponent implements OnInit {
         durationSong: res.duration,
         yearSong : res.year,
         nameArtist:this.nameArtist,
-        songUUID : res.songUUID
+        songUUID : res.songUUID,
+        state:true
       }
       this.listMediaPlayer.push(dataInfo);
       
