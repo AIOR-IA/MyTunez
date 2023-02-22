@@ -20,8 +20,8 @@ export class PlayListBodyComponent implements OnInit {
   listTracks:TrackModel[] = [];
   listMediaPlayer:MediaPlayerModel[] = [];
   optionSort: { property: string | null, order: string } = { property: null, order: 'asc' }
-  constructor(private multimediaService:MultimediaService) { 
-   
+  constructor(private multimediaService:MultimediaService) {
+
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class PlayListBodyComponent implements OnInit {
         songUUID : res.songUUID
       }
       this.listMediaPlayer.push(dataInfo);
-      
+
     })
     console.log("mediaPlayerSending" , this.listMediaPlayer);
 
@@ -74,7 +74,5 @@ export class PlayListBodyComponent implements OnInit {
   GetTrack(track: MediaPlayerModel){
     console.log(track);
     this.multimediaService.trackInfo$.next(track);
-
-  
   }
 }

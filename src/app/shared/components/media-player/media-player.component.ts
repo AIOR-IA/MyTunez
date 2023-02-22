@@ -22,7 +22,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
   listObservers$: Subscription[];
   statePlayer: string = 'paused';
 
-  volume = 50;
+  volume = 20;
   stateVoume = "sound";
 
   constructor(public multimediaService: MultimediaService) {
