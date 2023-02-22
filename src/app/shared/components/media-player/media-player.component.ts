@@ -68,11 +68,7 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
   SongPrevious() {
     console.log("previous")
-    //this is for muted audio
-    // this.multimediaService.mutedAudio();
-
     this.multimediaService.previousSong();
-
   }
 
   SongNext() {

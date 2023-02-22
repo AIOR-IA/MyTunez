@@ -83,10 +83,9 @@ export class PlayListBodyComponent implements OnInit {
         yearSong : res.year,
         nameArtist:this.nameArtist,
         songUUID : res.songUUID,
-        state:true
+        state:false
       }
       this.listMediaPlayer.push(dataInfo);
-      
     })
   }
 }
