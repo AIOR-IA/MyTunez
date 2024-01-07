@@ -25,3 +25,8 @@ mat-form-field.mat-form-field {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.mat-dialog-container {
+  background-color: #303030;
+  color: #f3f3f3;
+}

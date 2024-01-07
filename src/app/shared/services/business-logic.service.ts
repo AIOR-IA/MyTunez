@@ -89,11 +89,9 @@ export class BusinessLogicService {
   }
 
    addArtist(artist: ArtistModel) {
-    // console.log("here = ", this.artistCollection)
     this.artistCollection.push(artist);
     this.localstorageService.setCollection(this.keyArtists, JSON.stringify(this.artistCollection));
     this.artistCollection = this.getContextCollection(this.keyArtists);
-    // console.log(this.artistCollection);
   }
 
   addAlbum(album: AlbumModel) {

@@ -54,13 +54,25 @@
     font-size: 80%;
     opacity: .7;
 }
+.cover-section .cover-info .name-track-select {
+    color: var(--primary-green);
+}
+
 
 // HOVER LIST SONGS
 .track-name-status {
-    opacity: 0.1;
+    opacity: 0.8;
     transition: opacity 200ms ease-in;
 }
 
-.track-name-status:hover {
-    opacity: 1;
+.track-name-status .active {
+    background-color: var(--primary-green);
+}
+
+.track-name-status .btn {
+    border-radius: 7px;
+    
+}
+.track-name-status .btn:hover{
+    background-color: var(--primary-green);
 }

@@ -11,20 +11,12 @@ import {TrackService} from '../../../modules/tracks/services/track.service';
 })
 export class MediaPlayerComponent implements OnInit, OnDestroy {
 
-  // mockCover: TrackModel = {
-  //   cover:'https://i.scdn.co/image/ab67616d0000b273b1504069929fe0a81594eb33',
-  //   name:'Luis Miguel',
-  //   album:'ARIES',
-  //   url:'http://localhost/track.mp3',
-  //   _id:1
-  // }
-  // mockCover:TrackModel;
   @ViewChild('progressBar') progressBarHTML: ElementRef;
   listObservers$: Subscription[];
   statePlayer: string = 'paused';
 
   // volume default
-  volume = 5;
+  volume = 50;
   stateVoume = "sound";
 
   //Shuffle
@@ -36,9 +28,10 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    
+
     const observerStatus$ = this.multimediaService.playerStatusSong$.subscribe(status => {
       this.statePlayer = status;
+      console.log(status)
     })
     this.listObservers$ = [observerStatus$];
 
@@ -81,25 +74,24 @@ export class MediaPlayerComponent implements OnInit, OnDestroy {
 
 // CONFIGURATION FOR VOLUME
   changeSliderVolume(event: any) {
-
-    let volumeSlider = event.value;
-    if (volumeSlider == 0) {
+    this.volume = event.value;
+    if ( this.volume == 0) {
       this.stateVoume = 'mute'
     } else {
       this.stateVoume = 'sound'
     }
-    this.setVolumeSytem(volumeSlider)
+    this.setVolumeSytem( this.volume)
   }
 
   changeStateVolume(stateVoume: string) {
     if (stateVoume == 'mute') {
-      this.volume = 0;
+      this.setVolumeSytem(0)
+
     }
     if (stateVoume == 'sound') {
-      this.volume = 65;
+      this.setVolumeSytem(this.volume)
     }
     this.stateVoume = stateVoume
-    this.setVolumeSytem(this.volume)
   }
 
   setVolumeSytem(volume: number) {

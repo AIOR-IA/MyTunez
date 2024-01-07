@@ -34,8 +34,7 @@ export class RegistrationLogicService {
         website: artistForm.website.value,
         image: url.toString()
       }
-      console.warn("ARTIST NEW DTO")
-      console.log(artistNew);
+
 
       // ADD ARTIST DATABASE LOCAL STORAGE
       this.logic.addArtist(artistNew);
@@ -60,8 +59,7 @@ export class RegistrationLogicService {
         imageCover: url.toString(),
         artistUUID: albumForm.artist.value,
       }
-      console.warn("ARTIST NEW DTO")
-      console.log(albumNew);
+
 
       // ADD ARTIST DATABASE LOCAL STORAGE
       this.logic.addAlbum(albumNew);
@@ -75,7 +73,6 @@ export class RegistrationLogicService {
 
     // GET DURATION SONG
     await this.getDurationAudio(songForm.linkSong.value).then(async response => {
-      console.warn("DURATION SONG 2 = " + response)
       let durationSong: any;
       durationSong = response;
 
@@ -93,8 +90,7 @@ export class RegistrationLogicService {
           linkSong: url.toString(),
           albumUUID: songForm.album.value,
         }
-        console.warn("SONG NEW DTO")
-        console.log(songNew);
+
 
         // ADD ARTIST DATABASE LOCAL STORAGE
         this.logic.addSong(songNew);
@@ -112,8 +108,7 @@ export class RegistrationLogicService {
     return new Promise((response) => {
       this.angularFireStorage.upload(path, file).then(() => {
         fileRef.getDownloadURL().subscribe(url => {
-          console.warn("UPLOADED IMAGE ");
-          console.log(url);
+
           response(url)
         })
       }).catch(error => {
@@ -131,7 +126,6 @@ export class RegistrationLogicService {
         const duration = audio.duration;
         const minutes = Math.floor(duration / 60);
         const seconds = Math.round(duration % 60);
-        console.log('Duration:', minutes, 'minutes', seconds, 'seconds');
         response(minutes + ":" + seconds)
       });
       audio.src = URL.createObjectURL(file);

@@ -27,7 +27,6 @@ export class TracksPageComponent implements OnInit {
     this.capturateParam.params.subscribe((resp) => {
        this.UuidArtist=resp['idArtist'];
        this.loadData(this.UuidArtist,logicService.albumCollection);
-       console.log("ENTRO TRACK SERVICE");
     });
    }
 
@@ -47,9 +46,9 @@ export class TracksPageComponent implements OnInit {
      this.mockTracksList = dataAlbums.filter((x:any) => x.artistUUID === UuidArtist);
      const nameArtist:ArtistModel = this.logicService.getArtistById(UuidArtist);
      if(this.mockTracksList.length===0){
-      this.TitleCard = `No recorded albums were found for ${nameArtist.name}`;
+      this.TitleCard = `No recorded albums were found for ${nameArtist?.name}`;
      }else{
-       this.TitleCard = `Artist Albums: ${nameArtist.name}`;
+       this.TitleCard = `Artist Albums: ${nameArtist?.name}`;
      }
     }else{
      this.mockTracksList = dataAlbums;

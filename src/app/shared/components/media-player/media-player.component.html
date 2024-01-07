@@ -36,14 +36,14 @@
 <ng-template #playerZone>
   <div class="player-controls-inside">
     <div class="buttons-media">
-      <button (click)="SongPrevious()" class="arrow btn">
+      <button (click)="SongPrevious()" class="arrow btn" title="Previous">
         <i class="fa-solid fa-backward-step"></i>
       </button>
-      <button (click)="changeStatePlayer()" class="play btn">
+      <button (click)="changeStatePlayer()" class="play btn"  [title]="statePlayer === 'paused' ? 'Play' : 'Pause' ">
         <i *ngIf="statePlayer === 'paused' || statePlayer ==='ended' " class="fa-solid fa-circle-play"></i>
         <i *ngIf="statePlayer !== 'paused' && statePlayer !=='ended' " class="fa-solid fa-circle-pause"></i>
       </button>
-      <button (click)="SongNext()" class="arrow btn">
+      <button (click)="SongNext()" class="arrow btn" title="Next">
         <i class="fa-solid fa-forward-step"></i>
       </button>
     </div>
@@ -54,7 +54,7 @@
                 <span class="time-progress-live" [style.width]="(multimediaService.playerPercentage$ | async )+'%'">
                 </span>
             </span>
-      <div class="time">{{multimediaService.timeRemaining$ | async}}</div>
+      <div class="time">{{  multimediaService.timeRemaining$ | async  }}</div>
     </div>
   </div>
 </ng-template>

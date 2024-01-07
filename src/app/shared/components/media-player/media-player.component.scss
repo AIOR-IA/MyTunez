@@ -104,8 +104,11 @@
     background-color: transparent;
     border: 0;
     color: var(--color-4);
-    opacity: .7;
+    opacity: .85;
     font-size: 1.65rem
+}
+.media-player--wrapper .player-controls-inside .buttons-media .btn:hover {
+    color: var(--primary-green);
 }
 
 .media-player--wrapper .player-controls-inside .buttons-media .play {

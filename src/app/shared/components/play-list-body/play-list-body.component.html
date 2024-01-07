@@ -2,17 +2,17 @@
     <ul class="play-list-table-header">
         <li>❤</li>
         <li (click)="changeSort('name')"><i class="uil uil-clock-eight">Name ❤</i></li>
-        <li (click)="changeSort('album')"><i class="uil uil-clock-eight">álbum 🆗</i></li>
-        <li><i class="uil uil-clock-eight">Year 😁</i></li>
+        <li (click)="changeSort('album')"><i class="uil uil-clock-eight">álbum </i></li>
+        <li><i class="uil uil-clock-eight">Year</i></li>
         <li><i class="uil uil-clock-eight">Duration</i></li>
     </ul>
     <!-- <ul class="play-list-rows" *ngFor="let track of listTracks | orderList:optionSort.property:optionSort.order"></ul> -->
-    <ul class="play-list-rows" *ngFor="let track of listMediaPlayer ;let songIndex = index ">
+    <ul class="play-list-rows" *ngFor="let track of listMediaPlayer; let songIndex = index ">
         <li class="track-name-status">
-            <button (click)="GetTrack(track,songIndex) " class="">
-        <i *ngIf="track.state" class="fa-solid fa-circle-pause "></i>
-        <i *ngIf="track.state==false" class="fa-solid fa-circle-play "></i>
-      </button>
+            <button (click)="GetTrack(track,songIndex) " [class]="track.state ? 'btn active ' : 'btn' ">
+                <i *ngIf="track.state" class="fa-solid fa-circle-pause "></i>
+                <i *ngIf="track.state==false" class="fa-solid fa-circle-play "></i>
+            </button>
         </li>
         <li class="track-name ">
             <ng-container *ngTemplateOutlet="coverSection;context:{track:track} "></ng-container>
@@ -34,7 +34,7 @@
     <div class="cover-section ">
         <img appImgBroken class="cover-track" [src]="dataAlbum.imageCover" [alt]="dataAlbum.title">
         <div class="cover-info ">
-            <div class="name-track ">{{track.nameSong}}</div>
+            <div [class]="track.state ? 'name-track-select' : 'name-track' ">{{track.nameSong}}</div>
             <div class="name-track-details ">{{track.nameArtist}}</div>
         </div>
     </div>

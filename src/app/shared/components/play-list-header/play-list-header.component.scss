@@ -2,16 +2,22 @@
     display: flex;
     height: 18rem;
     width: 100%;
-    background-color: #ffffff14;
+    background-image: radial-gradient(circle, #161e22, #1b252a, #202c32, #25333a, #2a3a42);
+    
     &__cover {
         width: 17rem;
         padding: 1rem 0rem 1rem 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
+        
         &__mock {
             width: 250px;
             height: 250px;
+            -webkit-box-shadow: 3px -2px 70px -3px rgba(169,80,199,0.79);
+            -moz-box-shadow: 3px -2px 70px -3px rgba(169,80,199,0.79);
+            box-shadow: 3px -2px 70px -3px rgba(169,80,199,0.79);
+
         }
     }
     &__content {
@@ -26,7 +32,7 @@
         }
         &__title {
             font-size: 4.5rem;
-            letter-spacing: -7px;
+            letter-spacing: -3px;
         }
         &__smalltext {
             text-transform: uppercase;

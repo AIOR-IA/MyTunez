@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {GenreModel} from "@core/models/genre.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import {ArtistModel} from "@core/models/artist.model";
 import {RegistrationLogicService} from "@shared/services/registration-logic.service";
 import {BusinessLogicService} from "@shared/services/business-logic.service";
@@ -61,7 +61,6 @@ export class RegistrationFormComponent implements OnInit {
 
       }
     );
-    console.log(this.artistForm)
   }
 
   loadAlbumForm() {
@@ -88,13 +87,11 @@ export class RegistrationFormComponent implements OnInit {
     );
   }
 
-  validationBlankSpace() {
-    return function (control: FormControl) {
+  validationBlankSpace(): ValidatorFn  {
+    return (control: AbstractControl): { [key: string]: any } | null => {
       const text = control.value;
-      console.warn("validation Blank Space")
 
       if (text) {
-        console.log(text.trim().length)
         if (text.trim().length == 0) {
           return {
             empty: true
@@ -107,7 +104,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   requiredFileType(type: string[]) {
-    return function (control: FormControl) {
+    return function (control: AbstractControl) {
       const file = control.value;
       if (file) {
         const extension = file.name.split('.')[1].toLowerCase();
@@ -117,13 +114,9 @@ export class RegistrationFormComponent implements OnInit {
 
           if (val.toLowerCase() === extension.toLowerCase()) {
             coincidenceFound++;
-            console.warn("VAL " + val.toLowerCase())
-            console.warn("EXTENSION " + extension.toLowerCase())
           }
         }
-        console.warn("required File Type")
-        console.log(file.name)
-        console.log(coincidenceFound)
+
 
         if (coincidenceFound === 0) {
           return {
@@ -162,9 +155,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registerSongForm.get("album")?.reset()
 
     this.albums = this.logic.getAlbums(artistUUID);
-    console.log(this.albums)
 
-    console.log(this.songForm)
 
   }
 
@@ -204,7 +195,6 @@ export class RegistrationFormComponent implements OnInit {
   // SONG
 
   onSubmitSong() {
-    console.log(this.songForm)
     if (!this.registerSongForm.invalid) {
       this.showSpinner("song")
       this.registrationLogic.registerSong(this.songForm).then((res) => {
@@ -257,6 +247,8 @@ export class RegistrationFormComponent implements OnInit {
     Swal.fire({
       title: type,
       allowOutsideClick: false,
+      background:'rgba(30,30,30,1)',
+      color: '#fff',
       icon: 'success',
       text: text
     });

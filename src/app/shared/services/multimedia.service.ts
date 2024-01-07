@@ -2,6 +2,8 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {MediaPlayerModel} from '../../core/models/media-player.model';
 import {ArtistModel} from "@core/models/artist.model";
+import { AlbumModel } from '@core/models/album.model';
+import { StateCurrenSong } from '@core/interfaces/stateCurrentSong.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,21 +36,31 @@ export class MultimediaService {
   //Get timeNow song for progressbar
   public playerPercentage$: BehaviorSubject<number> = new BehaviorSubject(0);
 
+  private statusShuffle: boolean = false;
+
+  public StateCurrentSong: StateCurrenSong;
+
   constructor() {
     this.audio = new Audio();
     this.trackInfo$.subscribe(responseInfoAudio => {
-      if (responseInfoAudio) {
+      if (responseInfoAudio ) {
         this.setAudio(responseInfoAudio)
+
       }
     })
 
+    this.deleteStateCurrentSong();
     this.listenAllEvents();
   }
 
   //PLAY SONG
   public setAudio(track: MediaPlayerModel): void {
     this.audio.src = track.urlSong;
-    this.audio.play();
+    this.audio.pause();
+
+    setTimeout(() => {
+       this.audio.play();
+    }, 150);
   }
 
   private listenAllEvents(): void {
@@ -76,9 +88,11 @@ export class MultimediaService {
         this.playerStatusSong$.next('playing')
         break
       case 'ended':
-        this.playerStatusSong$.next('ended')
+        this.playerStatusSong$.next('ended');
+        (this.statusShuffle) ? this.songNextSuffle() : this.songNext();
         break
       default:
+
         this.playerStatusSong$.next('paused')
         break
     }
@@ -105,12 +119,13 @@ export class MultimediaService {
     const displayMinutes = (minutes < 10) ? `0${minutes}` : minutes;
 
     const displayFormat = `-${displayMinutes}:${displaySeconds}`;
-
-    this.timeRemaining$.next(displayFormat);
+    (displayFormat === '-NaN:NaN') ? this.timeRemaining$.next('-00:00') : this.timeRemaining$.next(displayFormat);
   }
 
   public togglePlayerStatus(): void {
-    (this.audio.paused) ? this.audio.play() : this.audio.pause();
+    if(this.audio.src !== '' ) {
+       (this.audio.paused) ? this.audio.play() : this.audio.pause();
+    }
   }
 
   private setPercentage(currentTime: number, duration: number) {
@@ -133,14 +148,15 @@ export class MultimediaService {
   public previousSong() {
     const {currentTime} = this.audio;
     if (currentTime <= 10) {
-      this.audio.currentTime = 0;
-    } else {
       this.songPrevious();
+      this.StateCurrentSong.idx--;
+    } else {
+      this.audio.currentTime = 0;
     }
   }
 
   // CONFIGURATION FOR VOLUME
-  changeVolume(number: number) {
+  changeVolume(number: number = 50) {
     this.audio.volume = number;
   }
 
@@ -151,15 +167,17 @@ export class MultimediaService {
 
   //  SONG NEXT
   songNext() {
+    this.audio.pause();
     this.songNext$.next("change next song");
+    this.StateCurrentSong.idx++;
   }
 
   previousSongSuffle() {
     const {currentTime} = this.audio;
     if (currentTime <= 10) {
-      this.audio.currentTime = 0;
-    } else {
       this.songPreviousSuffle$.next("change previous suffle song");
+    } else {
+      this.audio.currentTime = 0;
     }
   }
 
@@ -170,6 +188,27 @@ export class MultimediaService {
 
   // ON AND OFF SUFFLE
   changeStateShuffle(state: string) {
+    (state === 'on') ? this.statusShuffle = true : this.statusShuffle = false;
     this.stateSuffle$.next(state);
+  }
+
+  setStateCurrentSong(album: AlbumModel, idx:number) {
+    this.StateCurrentSong = {
+      album,
+      idx,
+      state: true
+    }
+    localStorage.setItem("currentSong",JSON.stringify(this.StateCurrentSong))
+  }
+
+  deleteStateCurrentSong() {
+    // this.StateCurrenSong.state = false;
+  }
+
+  getStateCurrentSong() {
+    // if(!localStorage.getItem("currentSong")) return;
+    // const storedData = localStorage.getItem("currentSong");
+    // const data = storedData ? JSON.parse(storedData) : {};
+    return this.StateCurrentSong;
   }
 }

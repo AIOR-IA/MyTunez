@@ -24,7 +24,6 @@ export class FavoritePageComponent implements OnInit {
       this.DataArtist = logicService.getArtistById(this.artistUuid);
       this.DataAlbum = logicService.getAlbumById(this.albumUuid);
       this.DataSongs = logicService.getSongsByidAlbum(this.albumUuid);
-      console.log("CONTRUCTOR PRIMERA DATA" + this.DataSongs)
        // devuelve todos los albums
        
    });

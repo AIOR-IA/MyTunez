@@ -20,7 +20,7 @@ $mytunez-warn: mat.define-palette(mat.$grey-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$mytunez-theme: mat.define-light-theme((
+$mytunez-theme: mat.define-dark-theme((
   color: (
     primary: $mytunez-primary,
     accent: $mytunez-accent,
@@ -36,6 +36,7 @@ $mytunez-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 :root {
+    --primary-green: #1fdf64;
     --color-1: #1DB954;
     --color-2: #323232;
     --color-3: #000000;
@@ -60,6 +61,7 @@ body {
     font-family: var(--font-family-1);
     font-size: var(--font-size-1);
     color: var(--color-4);
+    user-select: none;
 }
 
 input,

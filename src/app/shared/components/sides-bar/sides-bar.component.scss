@@ -1,10 +1,24 @@
 .sidebar {
+  background-image: linear-gradient(to top, #121216, #19191d, #202024, #27272b, #2e2e32);
     width: 15.5rem;
     height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     padding: .5rem 1rem;
+    &__logo {
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            height: 100%;
+            width:  120px;
+            object-fit: cover;
+        }
+
+    }
     &__list {
         list-style: none;
         padding: 0;
@@ -29,7 +43,7 @@
             padding-left: 0.5rem;
         }
         &--one {
-            margin-top: 3rem;
+            margin-top: 0rem;
         }
     }
     &__separator {

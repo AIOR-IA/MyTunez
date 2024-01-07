@@ -5,6 +5,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {RegistrationFormComponent} from "@shared/components/registration-form/registration-form.component";
 import { TrackService } from '@modules/tracks/services/track.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { MultimediaService } from '../../services/multimedia.service';
 
 @Component({
   selector: 'app-sides-bar',
@@ -22,11 +24,19 @@ export class SidesBarComponent implements OnInit, OnDestroy {
   Artist: ArtistModel[] = [];
   listObservers$: Subscription[]=[]
 
-  constructor(private logicService: BusinessLogicService, public dialog: MatDialog , private trackService: TrackService) {
+  constructor(
+    private logicService: BusinessLogicService,
+    public dialog: MatDialog ,
+    private trackService: TrackService,
+    private router: Router,
+    private multimediaService: MultimediaService,
+  ) {
     this.Artist = logicService.artistCollection;
+    router.navigate(['/tracks', 'All']);
   }
-  
+
   ngOnInit(): void {
+    // this.multimediaService.deleteStateCurrentSong();
     this.mainMenu.defaultOptions = [
       {
         name: 'Home',
@@ -42,10 +52,10 @@ export class SidesBarComponent implements OnInit, OnDestroy {
       }
     ]
 
-    this.customOptions = this.Artist; 
-    
+    this.customOptions = this.Artist;
+
     this.createArtistDefault();
-    
+
     const observer1$ =this.trackService.dataFormArtist$.subscribe(res=>{
       this.customOptions = res;
       this.createArtistDefault();
@@ -57,10 +67,9 @@ export class SidesBarComponent implements OnInit, OnDestroy {
   }
 
   addPopUpContext() {
-    console.log("contexto")
     this.openDialog();
   }
-  
+
   openDialog(): void {
     const dialogRef = this.dialog.open(RegistrationFormComponent, {
       height: '750px',
@@ -68,11 +77,10 @@ export class SidesBarComponent implements OnInit, OnDestroy {
 
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
 
     });
   }
-  
+
   createArtistDefault():void {
     let firstElement:ArtistModel ={
       artistUUID: "All",

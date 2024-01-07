@@ -1,5 +1,7 @@
 <div class="sidebar">
-    <div><i class=" ">My Tunez</i></div>
+    <div class="sidebar__logo">
+        <img src="../../../../assets/img/logo-oficial.png" alt="">
+    </div>
     <ul class="sidebar__list sidebar__list--one">
         <li [routerLink]="item.router" *ngFor="let item of mainMenu.defaultOptions">
             <div class="sidebar__list__wrapper__item">

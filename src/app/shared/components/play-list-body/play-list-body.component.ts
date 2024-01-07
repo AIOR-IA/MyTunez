@@ -8,6 +8,7 @@ import {MediaPlayerModel} from '@core/models/media-player.model';
 import {TrackService} from '@modules/tracks/services/track.service';
 import {BusinessLogicService} from '../../services/business-logic.service';
 import {Subscription} from 'rxjs';
+import { StateCurrenSong } from '@core/interfaces/stateCurrentSong.interface';
 
 @Component({
   selector: 'app-play-list-body',
@@ -35,6 +36,8 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   countSuffle: number = 0;
 
   stateSuffle:string ="off"
+
+  currentSong: StateCurrenSong;
   constructor(private multimediaService: MultimediaService,
               private trackService: TrackService,
               private logicService: BusinessLogicService) {
@@ -49,6 +52,18 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     this.listTracks = data;
     this.loadDataSongs();
 
+    console.log(this.dataAlbum)
+    console.log(this.indexSong)
+    this.currentSong = this.multimediaService.getStateCurrentSong();
+    console.log(this.currentSong );
+    if(this.currentSong  && this.currentSong.state) {
+      if(this.currentSong.album.albumUUID === this.dataAlbum.albumUUID ) {
+        this.listMediaPlayer[this.currentSong .idx].state = true;
+        this.indexSong = this.currentSong .idx;
+      }
+    }
+
+    this.multimediaService.getStateCurrentSong();
 
     // PREVIOUS AND NEXT SONG
     this.multimediaService.songPrevious$.subscribe(res => {
@@ -56,6 +71,7 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     })
 
     this.multimediaService.songNext$.subscribe(res => {
+      console.log("songNext$")
       this.nextLogic();
     })
 
@@ -87,12 +103,17 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     })
     const observer2$ = this.trackService.statusSong$.subscribe((res: any) => {
       if (this.listMediaPlayer[this.indexSong].state) {
-        this.listMediaPlayer[this.indexSong].state = false;
+        this.listMediaPlayer[this.indexSong].state   = false;
+        this.multimediaService.StateCurrentSong.state = false;
+
       } else {
         this.listMediaPlayer[this.indexSong].state = true;
+        this.multimediaService.StateCurrentSong.state = true;
       }
     })
     this.listObservers$ = [observer1$, observer2$];
+
+    // console.log(this.listMediaPlayer);
   }
 
   changeSort(property: string): void {
@@ -104,20 +125,31 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   }
 
   GetTrack(track: MediaPlayerModel, songIndex: any) {
-
+    console.log({track, songIndex})
+    // console.log(this.indexSong);
     if (songIndex === this.indexSong) {
+      console.log("start");
       if (this.listMediaPlayer[songIndex].state) {
         this.listMediaPlayer[songIndex].state = false;
+        this.multimediaService.deleteStateCurrentSong();
+
       } else {
+        this.multimediaService.setStateCurrentSong(this.dataAlbum,songIndex);
         this.listMediaPlayer[songIndex].state = true;
       }
+      console.log(track.state)
       this.multimediaService.togglePlayerStatus();
     } else {
+      console.log("pause");
+
       this.indexSong = songIndex;
       this.resetStateSong()
       this.listMediaPlayer[songIndex].state = true;
       this.multimediaService.trackInfo$.next(track);
+      this.multimediaService.setStateCurrentSong(this.dataAlbum,songIndex);
     }
+    console.log(track)
+    console.log(this.listMediaPlayer)
   }
 
   loadDataSongs() {
@@ -187,9 +219,11 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   }
 
   changeSong() {
+    console.log(this.listMediaPlayer);
+    console.log(this.listMediaPlayer[this.indexSong]);
     this.resetStateSong()
     this.listMediaPlayer[this.indexSong].state = true;
- 
+
     this.multimediaService.trackInfo$.next(this.listMediaPlayer[this.indexSong]);
   }
 
