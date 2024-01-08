@@ -52,10 +52,7 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     this.listTracks = data;
     this.loadDataSongs();
 
-    console.log(this.dataAlbum)
-    console.log(this.indexSong)
     this.currentSong = this.multimediaService.getStateCurrentSong();
-    console.log(this.currentSong );
     if(this.currentSong  && this.currentSong.state) {
       if(this.currentSong.album.albumUUID === this.dataAlbum.albumUUID ) {
         this.listMediaPlayer[this.currentSong .idx].state = true;
@@ -113,7 +110,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     })
     this.listObservers$ = [observer1$, observer2$];
 
-    // console.log(this.listMediaPlayer);
   }
 
   changeSort(property: string): void {
@@ -125,10 +121,7 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   }
 
   GetTrack(track: MediaPlayerModel, songIndex: any) {
-    console.log({track, songIndex})
-    // console.log(this.indexSong);
     if (songIndex === this.indexSong) {
-      console.log("start");
       if (this.listMediaPlayer[songIndex].state) {
         this.listMediaPlayer[songIndex].state = false;
         this.multimediaService.deleteStateCurrentSong();
@@ -137,10 +130,8 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
         this.multimediaService.setStateCurrentSong(this.dataAlbum,songIndex);
         this.listMediaPlayer[songIndex].state = true;
       }
-      console.log(track.state)
       this.multimediaService.togglePlayerStatus();
     } else {
-      console.log("pause");
 
       this.indexSong = songIndex;
       this.resetStateSong()
@@ -148,8 +139,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
       this.multimediaService.trackInfo$.next(track);
       this.multimediaService.setStateCurrentSong(this.dataAlbum,songIndex);
     }
-    console.log(track)
-    console.log(this.listMediaPlayer)
   }
 
   loadDataSongs() {
@@ -207,8 +196,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     this.indexAlbum = AlbumCollection.findIndex(res => res.albumUUID === this.dataAlbum.albumUUID);
     this.sizeSongs = songCollection.length;
 
-
-
     if (this.indexSong == (this.sizeSongs - 1)) {
       this.indexSong = 0;
       this.changeSong()
@@ -219,8 +206,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
   }
 
   changeSong() {
-    console.log(this.listMediaPlayer);
-    console.log(this.listMediaPlayer[this.indexSong]);
     this.resetStateSong()
     this.listMediaPlayer[this.indexSong].state = true;
 
@@ -262,7 +247,6 @@ export class PlayListBodyComponent implements OnInit, OnDestroy {
     })
 
     this.arraySuffle = this.shuffleArray(this.arraySuffle, this.indexSong);
-    console.log(this.arraySuffle);
   }
 
   shuffleArray(arr: number[], index: number): number[] {
